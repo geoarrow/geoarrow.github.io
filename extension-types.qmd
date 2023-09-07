@@ -1,0 +1,5 @@
+---
+title: "Metadata"
+---
+
+{{< include geoarrow/extension-types.md >}}

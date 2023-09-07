@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+geoarrow/
+/.quarto/
+.DS_Store
+_site

@@ -1,0 +1,17 @@
+project:
+  type: website
+
+website:
+  title: "GeoArrow"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - extension-types.qmd
+      - format.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
