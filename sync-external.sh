@@ -7,3 +7,13 @@ elif [ -z "$GEOARROW_REF" ]; then
     tar -xzf -
   mv geoarrow-main geoarrow
 fi
+
+pushd geoarrow
+
+for f in README.md format.md extension-types.md; do
+  sed -i.bak 's/^# [ :A-Za-z-]*$//g' $f
+  sed -i.bak 's/\.md/.qmd/g' $f
+  rm $f.bak
+done
+
+popd

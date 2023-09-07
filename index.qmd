@@ -2,4 +2,4 @@
 title: "GeoArrow"
 ---
 
-{{< include geoarrow/format.md >}}
+{{< include geoarrow/README.md >}}

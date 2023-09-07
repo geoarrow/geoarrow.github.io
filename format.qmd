@@ -2,4 +2,4 @@
 title: "Format"
 ---
 
-{{< include geoarrow/extension-types.md >}}
+{{< include geoarrow/format.md >}}

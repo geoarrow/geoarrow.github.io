@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!geoarrow/"
 
 website:
   title: "GeoArrow"
@@ -7,8 +10,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - extension-types.qmd
       - format.qmd
+      - extension-types.qmd
+      - text: "Implementations"
+        menu:
+          - href: https://github.com/geoarrow/geoarrow-c
+            text: "C/C++"
+          - href: https://github.com/kylebarron/geoarrow-rs
+            text: "Rust"
 
 format:
   html:
