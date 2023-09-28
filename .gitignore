@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 geoarrow/
+geoarrow-data/
 /.quarto/
 .DS_Store
 _site

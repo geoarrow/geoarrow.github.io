@@ -3,6 +3,7 @@ project:
   render:
     - "*.qmd"
     - "!geoarrow/"
+    - "!geoarrow-data/"
 
 website:
   title: "GeoArrow"
@@ -12,12 +13,17 @@ website:
         text: Home
       - format.qmd
       - extension-types.qmd
+      - data.qmd
       - text: "Implementations"
         menu:
           - href: https://github.com/geoarrow/geoarrow-c
             text: "C/C++"
-          - href: https://github.com/kylebarron/geoarrow-rs
+          - href: https://github.com/geoarrow/geoarrow-rs
             text: "Rust"
+          - href: https://github.com/geoarrow/geoarrow-python
+            text: "Python"
+          - href: https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md
+            text: "WebAssembly"
 
 format:
   html:
