@@ -7,4 +7,3 @@ title: "Data"
 {{< include geoarrow-data/microsoft-buildings/README.md >}}
 
 {{< include geoarrow-data/example/README.md >}}
-

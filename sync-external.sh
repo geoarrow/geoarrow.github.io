@@ -19,7 +19,7 @@ elif [ -z "$GEOARROW_DATA_REF" ]; then
   GEOARROW_DATA_REF="refs/heads/main"
   curl -L https://github.com/geoarrow/geoarrow-data/archive/$GEOARROW_DATA_REF.tar.gz |
     tar -xzf -
-  mv geoarrow-main geoarrow
+  mv geoarrow-data-main geoarrow-data
 else
   curl -L https://github.com/geoarrow/geoarrow-data/archive/$GEOARROW_DATA_REF.tar.gz |
     tar -xzf -

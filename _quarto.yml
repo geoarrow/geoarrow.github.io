@@ -24,6 +24,9 @@ website:
             text: "Python"
           - href: https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md
             text: "WebAssembly"
+    right:
+      - icon: github
+        href: https://github.com/geoarrow/geoarrow
 
 format:
   html:
