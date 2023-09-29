@@ -20,7 +20,7 @@ jobs:
           ./sync-external.sh
         env:
           GEOARROW_REF: "a7cc2392d3fb46e663d914d931f33d022dc45e91"
-          GEOARROW_DATA_REF: "2852d10f06c4ce4256ba6835299d9a54ee0d5bbf"
+          GEOARROW_DATA_REF: "6416e472f18669bb7b7248714ecf3545d6a099cb"
 
       - name: Publish to Netlify (and render)
         uses: quarto-dev/quarto-actions/publish@v2
