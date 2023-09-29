@@ -8,6 +8,7 @@ project:
 website:
   title: "GeoArrow"
   navbar:
+    logo: geoarrow_logo.png
     left:
       - href: index.qmd
         text: Home
