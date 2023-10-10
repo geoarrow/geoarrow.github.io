@@ -1,0 +1,7 @@
+---
+title: "Resources"
+---
+
+## Blog posts
+
+- [Fast, Elegant, and Performative Geospatial Data Analysis with Arrow](https://voltrondata.com/resources/geospatial_data_in_apache_arrow) (Kae Suarez, Dewey Dunnington: Voltron Data Blog)
