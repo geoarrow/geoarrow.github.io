@@ -1,17 +1,31 @@
 [
   {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
     "section": "",
-    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
+    "text": "The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia Geospatial Data Directory.\nThese data were obtained under an Unrestricted Data Use License Agreement for Government Geographic Data as specified by the Province of Nova Scotia Geospatial Data Directory.\n\n\n\n\nbasin_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nland_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_cent (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_junc (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)"
   },
   {
-    "objectID": "resources.html#blog-posts",
-    "href": "resources.html#blog-posts",
-    "title": "Resources",
+    "objectID": "data.html#nova-scotia-water",
+    "href": "data.html#nova-scotia-water",
+    "title": "Data",
     "section": "",
-    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
+    "text": "The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia Geospatial Data Directory.\nThese data were obtained under an Unrestricted Data Use License Agreement for Government Geographic Data as specified by the Province of Nova Scotia Geospatial Data Directory.\n\n\n\n\nbasin_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nland_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_cent (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_junc (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)"
+  },
+  {
+    "objectID": "data.html#microsoft-u.s.-building-footprints",
+    "href": "data.html#microsoft-u.s.-building-footprints",
+    "title": "Data",
+    "section": "Microsoft U.S. Building Footprints",
+    "text": "Microsoft U.S. Building Footprints\nThe Microsoft U.S. Building Footprints data set is a collection of ~130 million polygon outlines of buildings derived from satellite imagery. The version of the data set in this repository is does not include Alaska or Hawaii, is repackaged as a single point for each building, and compressed using ZSTD compression to minimize file size and facilitate downloading.\nThe original data is licensed under the Open Data Commons Open Database License (ODbL) and is made available here under the same license.\n\n\nFiles\n\npoint (fgb/zip, arrow, arrow/interleaved)"
+  },
+  {
+    "objectID": "data.html#examples",
+    "href": "data.html#examples",
+    "title": "Data",
+    "section": "Examples",
+    "text": "Examples\nThese files are toy example files useful for testing and simple examples. Their main purpose is to make it easy to test full coverage of the geometry type/dimension/coordinate type grid. The examples are based on the wk R package’s wk::wk_example_wkt data set.\n\n\nFiles\n\npoint (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)"
   },
   {
     "objectID": "format.html",
@@ -42,32 +56,18 @@
     "text": "Concrete examples of the memory layout\nPoint\nArrow type: FixedSizeList&lt;double&gt;[2] or Struct&lt;x: double, y: double&gt;\nFor an array of Point geometries, only a single coordinate array is used. If using a fixed size list coordinate representation, each Point will consist of 2 coordinate values and a single array of length 2*N is sufficiently informative. If using a struct coordinate representation, there will be one child array per dimension.\nExample of array with 3 points:\nWKT: [\"POINT (0 0)\", \"POINT (0 1)\", \"POINT (0 2)\"]\nLogical representation:\n[(0, 0), (0, 1), (0, 2)]\nPhysical representation (buffers):\n\nCoordinates: [0.0, 0.0, 0.0, 1.0, 0.0, 2.0]\n\nIf using a struct coordinate representation:\n\nCoordinate x values: [0.0, 0.0, 0.0]\nCoordinate y values: [0.0, 1.0, 2.0]\n\nMultiPoint\nArrow type: List&lt;FixedSizeList&lt;double&gt;[2]&gt; or List&lt;Struct&lt;x: double, y: double&gt;&gt;\nFor an array of MultiPoint geometries, an additional array of offsets indicate where the vertices of each MultiPoint start.\nExample of array with 3 multipoints:\nWKT: [\"MULTIPOINT (0 0, 0 1, 0 2)\", \"MULTIPOINT (1 0, 1 1)\", \"MULTIPOINT (2 0, 2 1, 2 2)\"]\nLogical representation:\n[\n    [(0.0, 0.0), (0.0, 1.0), (0.0, 2.0)],\n    [(1.0, 0.0), (1.0, 1.0)],\n    [(2.0, 0.0), (2.0, 1.0), (2.0, 2.0)]\n]\nPhysical representation (buffers):\n\nCoordinates: [0.0, 0.0, 0.0, 1.0, 0.0, 2.0, 1.0, 0.0, 1.0, 1.0, 2.0, 0.0, 2.0, 1.0, 2.0, 2.0]\nGeometry offsets: [0, 3, 5, 8]\n\nFor an interleaved coordinate representation, the coordinates buffer must contain the number of geometry offsets * 2 elements. If using a struct coordinate representation, the coordinates buffer would be replaced by two buffers containing coordinate x and coordinate y values.\nMultiLineString\nArrow type: List&lt;List&lt;FixedSizeList&lt;double&gt;[2]&gt;&gt; or List&lt;List&lt;Struct&lt;x: double, y: double&gt;&gt;&gt;\nExample of array with 3 multilines:\nWKT:\n[\n    \"LINESTRING (0 0, 0 1, 0 2)\",\n    \"MULTILINESTRING ((1 0, 1 1), (2 0, 2 1, 2 2))\",\n    \"LINESTRING (3 0, 3 1)\"\n]\nLogical representation:\n[\n    [[(0, 0), (0, 1), (0, 2)]],\n    [\n        [(1, 0), (1, 1)],\n        [(2, 0), (2, 1), (2, 2)]\n    ],\n    [[(3, 0), (3, 1)]],\n]\nPhysical representation (buffers):\n\nCoordinates: [0.0, 0.0, 0.0, 1.0, 0.0, 2.0, 1.0, 0.0, 1.0, 1.0, 2.0, 0.0, 2.0, 1.0, 2.0, 2.0, 3.0, 0.0, 3.0, 1.0]\nPart offsets (linestrings): [0, 3, 5, 8, 10]\nGeometry offsets: [0, 1, 3, 4]\n\nIf using a struct coordinate representation, the coordinates buffer would be replaced by two buffers containing coordinate x and coordinate y values.\nMultiPolygon\nArrow type: List&lt;List&lt;List&lt;FixedSizeList&lt;double&gt;[2]&gt;&gt;&gt; or List&lt;List&lt;List&lt;Struct&lt;x: double, y: double&gt;&gt;&gt;&gt;\nExample of array with 3 points:\nWKT:\n[\n    \"MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20 35), (30 20, 20 15, 20 25, 30 20)))\",\n    \"POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))\",\n    \"MULTIPOLYGON (((30 20, 45 40, 10 40, 30 20)), ((15 5, 40 10, 10 20, 5 10, 15 5)))\"\n]\nLogical representation:\n[\n    # MultiPolygon 1\n    [\n        [\n            [[40, 40], [20, 45], [45, 30], [40, 40]]\n        ],\n        [\n            [[20, 35], [10, 30], [10, 10], [30, 5], [45, 20], [20, 35]],\n            [[30, 20], [20, 15], [20, 25], [30, 20]]\n        ]\n    ],\n    # MultiPolygon 2 (using an additional level of nesting to turn the Polygon into a MultiPolygon with one part)\n    [\n        [\n            [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]\n        ]\n    ],\n    # MultiPolygon 3\n    [\n        [\n            [[30, 20], [45, 40], [10, 40], [30, 20]]\n        ],\n        [\n            [[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]\n        ]\n    ]\n]\nPhysical representation (buffers):\n\nCoordinates: [40.0, 40.0, 20.0, 45.0, 45.0, 30.0, 40.0, 40.0, 20.0, 35.0, 10.0, 30.0, 10.0, 10.0, 30.0, 5.0, 45.0, 20.0, 20.0, 35.0, 30.0, 20.0, 20.0, 15.0, 20.0, 25.0, 30.0, 20.0, 30.0, 10.0, 40.0, 40.0, 20.0, 40.0, 10.0, 20.0, 30.0, 10.0, 30.0, 20.0, 45.0, 40.0, 10.0, 40.0, 30.0, 20.0, 15.0, 5.0, 40.0, 10.0, 10.0, 20.0, 5.0, 10.0, 15.0, 5.0]\nRing offsets: [0, 4, 10, 14, 19, 23, 28]\nPart offsets (polygons): [0, 1, 3, 4, 5, 6]\nGeometry offsets: [0, 2, 3, 5]\n\nIf using a struct coordinate representation, the coordinates buffer would be replaced by two buffers containing coordinate x and coordinate y values.\nWKT\nArrow type: Utf8\nFor an array of WKT geometries, a buffer of offsets indicate where the text of each feature begins.\nExample of array with 2 features:\nWKT: [\"MULTIPOINT (0 0, 0 1)\", \"POINT (30 10)\"]\nLogical representation:\n[\n    \"MULTIPOINT (0 0, 0 1)\",\n    \"POINT (30 10)\"\n]\nPhysical representation (buffers):\n\nData: b\"MULTIPOINT (0 0, 0 1)POINT (30 10)\"\nFeature offsets: [0, 21, 46]"
   },
   {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia Geospatial Data Directory.\nThese data were obtained under an Unrestricted Data Use License Agreement for Government Geographic Data as specified by the Province of Nova Scotia Geospatial Data Directory.\n\n\n\n\nbasin_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nland_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_cent (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_junc (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)"
+    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
   },
   {
-    "objectID": "data.html#nova-scotia-water",
-    "href": "data.html#nova-scotia-water",
-    "title": "Data",
+    "objectID": "resources.html#blog-posts",
+    "href": "resources.html#blog-posts",
+    "title": "Resources",
     "section": "",
-    "text": "The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia Geospatial Data Directory.\nThese data were obtained under an Unrestricted Data Use License Agreement for Government Geographic Data as specified by the Province of Nova Scotia Geospatial Data Directory.\n\n\n\n\nbasin_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nbasin_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nland_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_cent (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_junc (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_line (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_point (fgb/zip, arrow, arrow/interleaved, arrow/wkb)\nwater_poly (fgb/zip, arrow, arrow/interleaved, arrow/wkb)"
-  },
-  {
-    "objectID": "data.html#microsoft-u.s.-building-footprints",
-    "href": "data.html#microsoft-u.s.-building-footprints",
-    "title": "Data",
-    "section": "Microsoft U.S. Building Footprints",
-    "text": "Microsoft U.S. Building Footprints\nThe Microsoft U.S. Building Footprints data set is a collection of ~130 million polygon outlines of buildings derived from satellite imagery. The version of the data set in this repository is does not include Alaska or Hawaii, is repackaged as a single point for each building, and compressed using ZSTD compression to minimize file size and facilitate downloading.\nThe original data is licensed under the Open Data Commons Open Database License (ODbL) and is made available here under the same license.\n\n\nFiles\n\npoint (fgb/zip, arrow, arrow/interleaved)"
-  },
-  {
-    "objectID": "data.html#examples",
-    "href": "data.html#examples",
-    "title": "Data",
-    "section": "Examples",
-    "text": "Examples\nThese files are toy example files useful for testing and simple examples. Their main purpose is to make it easy to test full coverage of the geometry type/dimension/coordinate type grid. The examples are based on the wk R package’s wk::wk_example_wkt data set.\n\n\nFiles\n\npoint (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_z (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_m (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npoint_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nlinestring_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\npolygon_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipoint_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultilinestring_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)\nmultipolygon_zm (gpkg, arrow, arrow/interleaved, arrow/wkt, arrow/wkb)"
+    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
   },
   {
     "objectID": "extension-types.html",
