@@ -24,6 +24,8 @@ website:
             text: "Rust"
           - href: https://github.com/geoarrow/geoarrow-python
             text: "Python"
+          - href: https://github.com/geoarrow/geoarrow-r
+            text: "R"
           - href: https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md
             text: "WebAssembly"
       - resources.qmd
