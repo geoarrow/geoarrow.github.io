@@ -14,19 +14,48 @@ We released the first version of the GeoArrow specification (0.1) in September, 
 
 - https://geoarrow.org/geoarrow-rs
 
+Supports new types, metadata and ...?
+
 ## C/C++
 
 - https://geoarrow.org/geoarrow-c
+- Supports new types, metadata
+- Cleaned up/simplified interface
+
+TODO:
+
+- Import geometry union type
 
 ## Python
 
 - https://geoarrow.org/geoarrow-python
 - https://geoarrow.org/geoarrow-rs/python
 
+Initial geoarrow-pyarrow implementation depended on geoarrow's C implementation for almost everything. It became clear that a PyArrow-native implementation was what potential importers/exporters of GeoArrow in Python were actually looking for, and thus the initial implementation was completely rewritten in Python using only PyArrow.
+
+TODO:
+
+- Support Box type in geoarrow-python
+
 ## R
 
 - https://geoarrow.org/geoarrow-r
 - https://github.com/JosiahParry/geoarrowrs
+
+TODO:
+
+- All new types, metadata (easier when geoarrow-c supports it)
+
+## Data
+
+- https://geoarrow.org/data
+
+TODO:
+
+- Regenerate data to fix some mistakes (e.g., some files don't contain nulls that were meant to, they really should be streams instead of arrow files)
+- Add naturalearth countries/cities as spherical test data
+- Make sure there are largeish test data sets for all geometry types including mixed types
+- Also include GeoParquet output
 
 ## Ecosystem
 
@@ -38,6 +67,10 @@ https://geopandas.org
 - [`series.to_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.to_arrow.html)
 
 Thanks to Joris, Martin, and Kyle
+
+TODO:
+
+- Is it worth making sure that Arrow to/from works seamlessly?
 
 ### DuckDB
 
