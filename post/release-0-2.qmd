@@ -1,0 +1,60 @@
+---
+title: "GeoArrow 0.2 Release"
+---
+
+We released the first version of the GeoArrow specification (0.1) in September, 2023.
+
+## Specification
+
+- CRS updates
+- Box type
+- Geometry Union
+
+## Rust
+
+- https://geoarrow.org/geoarrow-rs
+
+## C/C++
+
+- https://geoarrow.org/geoarrow-c
+
+## Python
+
+- https://geoarrow.org/geoarrow-python
+- https://geoarrow.org/geoarrow-rs/python
+
+## R
+
+- https://geoarrow.org/geoarrow-r
+- https://github.com/JosiahParry/geoarrowrs
+
+## Ecosystem
+
+### GeoPandas
+
+https://geopandas.org
+
+- [`GeoSeries.from_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.from_arrow.html)
+- [`series.to_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.to_arrow.html)
+
+Thanks to Joris, Martin, and Kyle
+
+### DuckDB
+
+It has [long been a confusion](https://github.com/duckdb/duckdb-spatial/issues/153) for users of DuckDB's fantastic [spatial extension](https://duckdb.org/docs/extensions/spatial) that a query like `SELECT st_geomfromtext('LINESTRING (0 1, 2 3)')`, when converted to PyArrow or R's arrow package, contains no indication of any geometry column. The column that does appear in the output contains DuckDB spatial's internal serialization and is in general not that useful.
+
+In DuckDB 1.2, core developers [added support for extensions to control Arrow import/export](https://github.com/duckdb/duckdb/pull/15285), which opened the door for the spatial extension to [accept GeoArrow extensions](https://github.com/duckdb/duckdb-spatial/pull/485) and roundtrip the geometry type through DuckDB's much used Arrow integration in Python, R, and ADBC.
+
+Thanks to Max, Pedro, Ian
+
+### GDAL
+
+GDAL added its first [Arrow integration in RFC 86](https://gdal.org/en/stable/development/rfc/rfc86_column_oriented_api.html). This integration added a C API to work around the performance limitations of OGR's row-based reader and was picked up by [pyogrio](https://github.com/geopandas/pyogrio) almost immediately to enable faster IO - particularly for GeoPackage and FlatGeoBuf - for geopandas users. About a year later [a matching write API was added](https://github.com/OSGeo/gdal/pull/8517) and was used by GDAL itself to [speed up](https://github.com/OSGeo/gdal/pull/8560) its popular `ogr2ogr` command-line interface.
+
+Specifically related to the GeoArrow specification, GDAL 3.8.0 included the ability to [export geometry through its Arrow interface with GeoArrow type and CRS metadata](https://github.com/OSGeo/gdal/pull/8617). This makes it substantially easier to not accidentally drop the CRS of a geometry column when using the Arrow interface.
+
+Thanks to Even
+
+### Ibis
+
+https://github.com/ibis-project/ibis/pull/9549
