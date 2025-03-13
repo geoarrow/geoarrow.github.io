@@ -48,37 +48,139 @@ TODO:
 
 ## Data
 
-- https://geoarrow.org/data
+GeoArrow's 0.2 series of releases includes brand new revamped example data, the
+pipeline for which was completely rewritten to be mostly in Python using
+[geoarrow-rs](https://github.com/geoarrow/geoarrow-rs)'s excellent Python bindings,
+[geoarrow-python](https://github.com/geoarrow/geoarrow-python),
+[geopandas](https://geopandas.org), and
+[duckdb-spatial](https://duckdb.org/docs/extensions/spatial). The new pipeline
+made it easier to generate more formats and more examples to cover some of the
+concepts highlighted by our first year of on-the-ground experience with the format.
+A few highlights include:
 
-TODO:
+- Most examples are now available in [FlatGeoBuf](https://flatgeobuf.org),
+  [GeoParquet](https://geoparquet.org)'s WKB and Native encodings,
+  [Parquet's brand-new GEOMETRY logical type](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/),
+  and GeoArrow IPC streams with the WKT, WKB, native/interleaved, and
+  native/separated encodings where appropriate.
+- [Coordinate Reference System (CRS) examples](https://github.com/geoarrow/geoarrow-data/blob/main/example-crs#readme)
+  were added to cover various CRS encodings and categories that implementations may wish
+  to consider.
+- [USGS Map Quadrangles](https://github.com/geoarrow/geoarrow-data/tree/main/quadrangles#readme)
+  were added to illustrate the utility of/test the new "box" encoding that was added in the
+  0.2 release.
+- [Several examples](https://github.com/geoarrow/geoarrow-data/blob/main/natural-earth#readme)
+  based on the [Natural Earth](https://www.naturalearthdata.com/) project were added, including
+  an example with spherical edges/geography data type that can be used as a basic
+  example to illustrate/test global data handling.
 
-- Regenerate data to fix some mistakes (e.g., some files don't contain nulls that were meant to, they really should be streams instead of arrow files)
-- Add naturalearth countries/cities as spherical test data
-- Make sure there are largeish test data sets for all geometry types including mixed types
-- Also include GeoParquet output
+The latest data is available from the [geoarrow.org data page](https://geoarrow.org/data)
+and the sources can be found at the
+[geoarrow/geoarrow-data](https://github.com/geoarrow/geoarrow-data) GitHub repository.
 
 ## Ecosystem
 
 ### GeoPandas
 
-https://geopandas.org
+In the landmark [GeoPandas](https://geopandas.org) 1.0 release, the `GeoSeries` and `GeoDataFrame`
+added `from_arrow()` and `to_arrow()` methods to import and export Python objects using the
+[Arrow PyCapsule Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
+
+```python
+import pyarrow as pa
+import geoarrow.pyarrow as ga
+from geoarrow.rust.io import read_flatgeobuf
+import geopandas
+
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+
+table_rs = read_flatgeobuf(url)
+df = geopandas.GeoDataFrame.from_arrow(table_rs)
+df.head(5)
+#>            name                   geometry
+#> 0  Vatican City  POINT (12.45339 41.90328)
+#> 1    San Marino   POINT (12.44177 43.9361)
+#> 2         Vaduz   POINT (9.51667 47.13372)
+#> 3       Lobamba     POINT (31.2 -26.46667)
+#> 4    Luxembourg      POINT (6.13 49.61166)
+
+pa.table(df.to_arrow())
+#> pyarrow.Table
+#> name: string
+#> geometry: extension<geoarrow.wkb<WkbType>>
+#> ----
+#> name: [["Vatican City","San Marino","Vaduz","Lobamba","Luxembourg",...,
+#> geometry: [[010100000054E57B4622E828408B074AC09EF34440,0101000000DC...
+```
+
+For more information, see the excellent GeoPandas documentation:
 
 - [`GeoSeries.from_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.from_arrow.html)
-- [`series.to_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.to_arrow.html)
+- [`GeoSeries.to_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.to_arrow.html)
+- [`GeoDataFrame.from_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.from_arrow.html)
+- [`GeoDataFrame.to_arrow()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_arrow.html)
 
-Thanks to Joris, Martin, and Kyle
-
-TODO:
-
-- Is it worth making sure that Arrow to/from works seamlessly?
+Thanks to [@jorisvandenbossche](https://github.com/jorisvandenbossche) and
+[@kylebarron](https://github.com/kylebarron), for driving this integration!
 
 ### DuckDB
 
-It has [long been a confusion](https://github.com/duckdb/duckdb-spatial/issues/153) for users of DuckDB's fantastic [spatial extension](https://duckdb.org/docs/extensions/spatial) that a query like `SELECT st_geomfromtext('LINESTRING (0 1, 2 3)')`, when converted to PyArrow or R's arrow package, contains no indication of any geometry column. The column that does appear in the output contains DuckDB spatial's internal serialization and is in general not that useful.
+It has [long been a confusion](https://github.com/duckdb/duckdb-spatial/issues/153)
+for users of DuckDB's fantastic [spatial extension](https://duckdb.org/docs/extensions/spatial)
+that a query like `SELECT st_geomfromtext('LINESTRING (0 1, 2 3)')`, when converted to PyArrow
+or R's arrow package, contains no indication of any geometry column. The column that does
+appear in the output contains DuckDB spatial's internal serialization and is in general not
+that useful.
 
-In DuckDB 1.2, core developers [added support for extensions to control Arrow import/export](https://github.com/duckdb/duckdb/pull/15285), which opened the door for the spatial extension to [accept GeoArrow extensions](https://github.com/duckdb/duckdb-spatial/pull/485) and roundtrip the geometry type through DuckDB's much used Arrow integration in Python, R, and ADBC.
+In DuckDB 1.2, core developers
+[added support for extensions to control Arrow import/export](https://github.com/duckdb/duckdb/pull/15285),
+which opened the door for the spatial extension to
+[accept GeoArrow extensions](https://github.com/duckdb/duckdb-spatial/pull/485)
+and roundtrip the geometry type through DuckDB's much used Arrow integration in
+Python, R, and ADBC. Among other libraries supporting GeoArrow, this powers seamless
+integration between GeoPandas and DuckDB.
 
-Thanks to Max, Pedro, Ian
+```python
+import geopandas
+import duckdb
+
+duckdb.load_extension("spatial")
+duckdb.sql("CALL register_geoarrow_extensions()")
+
+# Create a GeoDataFrame
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+df = geopandas.read_file(url)
+
+# Create the Arrow table and use select directly from it with DuckDB
+df_arrow = df.to_arrow()
+duckdb.sql("SELECT * FROM df_arrow").limit(5)
+#> ┌──────────────┬────────────────────────────────┐
+#> │     name     │            geometry            │
+#> │   varchar    │            geometry            │
+#> ├──────────────┼────────────────────────────────┤
+#> │ Vatican City │ POINT (12.4533865 41.9032822)  │
+#> │ San Marino   │ POINT (12.4417702 43.9360958)  │
+#> │ Vaduz        │ POINT (9.5166695 47.1337238)   │
+#> │ Lobamba      │ POINT (31.1999971 -26.4666675) │
+#> │ Luxembourg   │ POINT (6.1300028 49.6116604)   │
+#> └──────────────┴────────────────────────────────┘
+
+# Going the other direction, call from_arrow() directly on a DuckDB result
+geopandas.GeoDataFrame.from_arrow(duckdb.sql("SELECT * FROM df_arrow")).head(5)
+#>            name                   geometry
+#> 0  Vatican City  POINT (12.45339 41.90328)
+#> 1    San Marino   POINT (12.44177 43.9361)
+#> 2         Vaduz   POINT (9.51667 47.13372)
+#> 3       Lobamba     POINT (31.2 -26.46667)
+#> 4    Luxembourg      POINT (6.13 49.61166)
+```
+
+For several more examples and a deeper dive in to DuckDB spatial in Python, see
+[Max Gabrielsson's excellent GeoPython 2025 tutorial](https://github.com/Maxxen/Geopython25).
+
+Special thanks to [@Maxxen](https://github.com/Maxxen), [@pdet](https://github.com/pdet),
+and [@ianmcook](https://github.com/ianmcook) for the PRs, reviews, and coordination to get
+this feature over the finish line!
 
 ### GDAL
 
