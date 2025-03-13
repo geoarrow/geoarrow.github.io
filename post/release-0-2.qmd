@@ -3,6 +3,12 @@ title: "GeoArrow 0.2 Release"
 ---
 
 We released the first version of the GeoArrow specification (0.1) in September, 2023.
+Since then we've learned from the [numerous integrations](#ecosystem)
+implemented by ourselves and others in the spatial community that highlighted
+ambiguities in the text of the first version and use-cases that necessitated
+changes to the specification. In this post we highlight new updates to the
+specification, updates to implementations, and community-driven integrations
+since the last specification release.
 
 ## Specification
 
@@ -182,13 +188,63 @@ Special thanks to [@Maxxen](https://github.com/Maxxen), [@pdet](https://github.c
 and [@ianmcook](https://github.com/ianmcook) for the PRs, reviews, and coordination to get
 this feature over the finish line!
 
+### Apache Sedona
+
+Apache Sedona's 1.6.0 release
+[added `dataframe_to_arrow()`](https://github.com/apache/sedona/pull/1767)
+in its Python bindings and its 1.7.0 release added an
+[Arrow-powered `create_spatial_dataframe()`](https://github.com/apache/sedona/pull/1825)
+creator to accellerate the Sedona--GeoPandas integration. In addition to higher
+performance when converting between GeoPandas and Spark, this change accellerated
+visualization of Spark `DataFrame`s with Geometry and general integration
+with tools that support GeoArrow.
+
+```python
+import geopandas
+import lonboard
+from sedona.spark import SedonaContext
+from sedona.utils.geoarrow import create_spatial_dataframe, dataframe_to_arrow
+
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+df = geopandas.read_file(url)
+
+config = SedonaContext.builder().getOrCreate()
+sedona = SedonaContext.create(config)
+
+sedona_df = create_spatial_dataframe(sedona, df)
+sedona_df.printSchema()
+#> root
+#>  |-- name: string (nullable = true)
+#>  |-- geometry: geometry (nullable = true)
+
+lonboard.viz(dataframe_to_arrow(sedona_df))
+```
+
+![](release-0-2-lonboard.png)
+
+These integrations were made possible by backporting the
+[forthcoming toArrow() in Spark 4.0](https://github.com/apache/spark/pull/45481)
+and the forthcoming ability of `createDataFrame()` to
+[accept Arrow objects directly](https://github.com/apache/spark/pull/46529).
+
+Thanks to [@ianmcook](https://github.com/ianmcook) for driving these changes
+in the Spark project and thanks to [@jiayuasu](https://github.com/jiayuasu) and
+[@Imbruced](https://github.com/Imbruced) for reviewing/integrating these changes
+into Sedona!
+
 ### GDAL
 
 GDAL added its first [Arrow integration in RFC 86](https://gdal.org/en/stable/development/rfc/rfc86_column_oriented_api.html). This integration added a C API to work around the performance limitations of OGR's row-based reader and was picked up by [pyogrio](https://github.com/geopandas/pyogrio) almost immediately to enable faster IO - particularly for GeoPackage and FlatGeoBuf - for geopandas users. About a year later [a matching write API was added](https://github.com/OSGeo/gdal/pull/8517) and was used by GDAL itself to [speed up](https://github.com/OSGeo/gdal/pull/8560) its popular `ogr2ogr` command-line interface.
 
-Specifically related to the GeoArrow specification, GDAL 3.8.0 included the ability to [export geometry through its Arrow interface with GeoArrow type and CRS metadata](https://github.com/OSGeo/gdal/pull/8617). This makes it substantially easier to not accidentally drop the CRS of a geometry column when using the Arrow interface.
+Specifically related to the GeoArrow specification, GDAL 3.8.0 included the ability to
+[export geometry through its Arrow interface with GeoArrow type and CRS metadata](https://github.com/OSGeo/gdal/pull/8617).
+This makes it substantially easier to propagate the CRS of a geometry column when
+using OGR's `GetArrowStream()` interface by passing the `GEOMETRY_METADATA_ENCODING=GEOARROW`
+layer option. When this option is set, geometry columns are marked with the `geoarrow.wkb`
+extension type with the appropriate `"crs"` in the extension metadata.
 
-Thanks to Even
+Full credit to [@rouault](https://github.com/rouault) for implementing these changes in
+the GDAL project!
 
 ### Ibis
 
