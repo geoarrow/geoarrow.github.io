@@ -12,7 +12,27 @@ since the last specification release.
 
 ## Specification
 
-- CRS updates
+The GeoArrow specification establishes conventions for representing spatial data
+in [Apache Arrow](https://arrow.apache.org) formats (e.g., C Data Interface,
+Serialized IPC) and implementations (e.g., PyArrow, Arrow C++, arrow-rs).
+It is separated into two parts:
+
+- A set of [extension type](https://geoarrow.org/extension-types.html) definitions
+  to propagate type-level spatial metadata (e.g., coordinate reference system, edge interpolation)
+- A set of [memory layouts](https://geoarrow.org/format.html) to represent geometry
+  arrays using features of the Arrow type system/format (e.g., points can be
+  represented as a `struct<x: double, y: double>`) instead of serialized into
+  well-known binary or some other binary format.
+
+In addition to some minor updates to improve clarity, GeoArrow 0.2 includes three
+notable changes.
+
+First, the language defining the content of the `"crs"` key in the extension metadata
+was updated to simplify the dependency requirements of producers that did not have
+a built-in ability to produce
+[PROJJSON](https://proj.org/en/stable/specifications/projjson.html), which was
+previously the only option allowed by the specification.
+
 - Box type
 - Geometry Union
 
@@ -292,3 +312,8 @@ the GDAL project!
 ### Ibis
 
 https://github.com/ibis-project/ibis/pull/9549
+
+## What's next?
+
+- Discrete global grids
+- Raster
