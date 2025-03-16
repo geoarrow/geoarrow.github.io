@@ -129,6 +129,30 @@ For more information, see the excellent GeoPandas documentation:
 Thanks to [@jorisvandenbossche](https://github.com/jorisvandenbossche) and
 [@kylebarron](https://github.com/kylebarron), for driving this integration!
 
+### Lonboard
+
+What's a fast geospatial skateboard? A *lon*board, of course! Powered by
+[deck.gl](https://deck.gl/), [lonboard](https://github.com/developmentseed/lonboard)
+can effortlessly render millions of features on an interactive map. The rendering
+is powered by GeoArrow's native encodings and the ecosystem integration handles
+geometry column detection and on-the-fly reprojection to ensure multiple layers are
+plotted together properly. The `viz()` one-liner works on any
+[Arrow-ish Python object](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html)
+and is a massive quality-of-life improvement when working with large-ish data in a notebook.
+
+```python
+from geoarrow.rust.io import read_flatgeobuf
+from lonboard import viz
+
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+viz(read_flatgeobuf(url))
+```
+
+![](release-0-2-lonboard.png)
+
+All credit here to [@kylebarron](https://github.com/kylebarron) for creating and maintaining
+this tool!
+
 ### DuckDB
 
 It has [long been a confusion](https://github.com/duckdb/duckdb-spatial/issues/153)
