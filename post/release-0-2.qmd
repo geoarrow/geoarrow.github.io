@@ -134,7 +134,8 @@ Thanks to [@jorisvandenbossche](https://github.com/jorisvandenbossche) and
 What's a fast geospatial skateboard? A *lon*board, of course! Powered by
 [deck.gl](https://deck.gl/), [lonboard](https://github.com/developmentseed/lonboard)
 can effortlessly render millions of features on an interactive map. The rendering
-is powered by GeoArrow's native encodings and the ecosystem integration handles
+is powered by [GeoArrow's native encodings](https://geoarrow.org/format.html) and
+the [GeoArrow extension types](https://geoarrow.org/extension-types.html) power
 geometry column detection and on-the-fly reprojection to ensure multiple layers are
 plotted together properly. The `viz()` one-liner works on any
 [Arrow-ish Python object](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html)
