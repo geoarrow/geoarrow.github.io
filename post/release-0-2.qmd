@@ -37,11 +37,29 @@ TODO:
 - https://geoarrow.org/geoarrow-python
 - https://geoarrow.org/geoarrow-rs/python
 
-Initial geoarrow-pyarrow implementation depended on geoarrow's C implementation for almost everything. It became clear that a PyArrow-native implementation was what potential importers/exporters of GeoArrow in Python were actually looking for, and thus the initial implementation was completely rewritten in Python using only PyArrow.
+The Initial [geoarrow-pyarrow](https://github.com/geoarrow/geoarrow-python) implementation
+depended completely on geoarrow's C implementation for almost everything; however it quickly
+became clear that a [PyArrow](https://arrow.apache.org/docs/python/)-native implementation
+was what potential importers/exporters of GeoArrow in Python were actually looking for.
+The result was two packages:
 
-TODO:
+- `geoarrow-types`, which provides an pure Python implementation of the GeoArrow
+  type system and PyArrow-native extension type implementation.
+- `geoarrow-pyarrow`, which provides compute functions and IO tools that
+  use PyArrow data structures for input/output but use various GeoArrow implementations
+  under the hood to do the actual crunching.
 
-- Support Box type in geoarrow-python
+The changes since the 0.1 release were mostly structure; however new spec features were
+also added including support for the box type and support for non-PROJJSON CRS encodings.
+
+Example ...
+
+Whereas `geoarrow-pyarrow` and `geoarrow-types` are aimed squarely at the PyArrow
+ecosystem, [`geoarrow-rust`](https://geoarrow.org/geoarrow-rs/python) provides a
+feature-rich set of compute and IO functions with input/output based on
+the [Arrow PyCapsule Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
+
+...
 
 ## R
 
