@@ -24,17 +24,51 @@ It is separated into two parts:
   represented as a `struct<x: double, y: double>`) instead of serialized into
   well-known binary or some other binary format.
 
-In addition to some minor updates to improve clarity, GeoArrow 0.2 includes three
+In addition to some minor updates to improve clarity, GeoArrow 0.2 includes four
 notable changes.
 
 First, the language defining the content of the `"crs"` key in the extension metadata
 was updated to simplify the dependency requirements of producers that did not have
 a built-in ability to produce
 [PROJJSON](https://proj.org/en/stable/specifications/projjson.html), which was
-previously the only option allowed by the specification.
+previously the only option allowed by the specification. Most producers of GeoArrow
+metadata have the ability to write PROJJSON and should continue to do so; however,
+other producer are now allowed to pass on whatever information they do have as a string.
+For example, the following extension metadata is now permitted:
 
-- Box type
-- Geometry Union
+```json
+{"crs": "EPSG:32620"}
+```
+
+For cases where the producer knew exactly how it chose to serialize the CRS,
+the optional `"crs_type"` field was added and can take on the value `"authority_code"`,
+`"srid"`, `"projjson"`, or `"wkt2:2019"`. Among other use cases, this enabled the
+[C++ implementation of the Parquet GEOMETRY type](https://github.com/apache/arrow/pull/45459)
+to losslessly pass on all the information stored in a Parquet logical type annotation
+for GEOMETRY or GEOGRAPHY in a dependency-sensitive environment.
+
+Second, the `"edges"` parameter, which could previously have been omitted (to indicate
+planar/linear edges as defined by simple features) or taken the value `"spherical"`
+to indicate that vertices should be connected by approximating the edge as the
+shortest path on a perfect sphere. In the recently voted in
+[GEOMETRY and GEOGRAPHY types in Parquet and Iceberg](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/),
+four other options (`"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`) were
+added to ensure GeoArrow can faithfully represent the intent of an arbitrary Parquet
+and/or Iceberg source.
+
+Third, the GeoArrow 0.2 specification formalizes two types that had been used
+internally in the [GeoArrow Rust implementation](https://github.com/geoarrow/geoarrow-rs):
+
+- The "box" memory layout and corresponding `geoarrow.box` extension name represents
+  min/max values of X, Y, [Z, [M]], represented as a struct similar to a point with
+  separated coordinates.
+- The "geometry" and "geometrycollection" memory layouts and corresponding `geoarrow.geometry`
+  and `geoarrow.geometrycollection` extension names allow arbitrary geometries to be
+  represented within a single feature and within a single array using a union of the other
+  native encodings.
+
+While the box type is available in all implementations, the geometry and geometrycollection
+types are currently only available in the Rust implementation.
 
 ## Rust
 
