@@ -1,8 +1,15 @@
 ---
 title: "GeoArrow 0.2 Release"
+author:
+  - name: Dewey Dunnington
+    url: https://dewey.dunnington.ca/
+  - name: Kyle Barron
+    url: https://kylebarron.dev/
+  - name: Joris Van den Bossche
+    url: https://jorisvandenbossche.github.io/
 ---
 
-We released the first version of the GeoArrow specification (0.1) in September, 2023.
+We released the first version of the GeoArrow specification (v0.1) in September 2023.
 Since then we've learned from the [numerous integrations](#ecosystem)
 implemented by ourselves and others in the spatial community that highlighted
 ambiguities in the text of the first version and use-cases that necessitated
@@ -14,38 +21,122 @@ since the last specification release.
 
 The GeoArrow specification establishes conventions for representing spatial data
 in [Apache Arrow](https://arrow.apache.org) formats (e.g., C Data Interface,
-Serialized IPC) and implementations (e.g., PyArrow, Arrow C++, arrow-rs).
+Serialized IPC) and implementations (e.g., [PyArrow][pyarrow], [Arrow C++][arrow-cpp], [arrow-rs]).
 It is separated into two parts:
 
-- A set of [extension type](https://geoarrow.org/extension-types.html) definitions
-  to propagate type-level spatial metadata (e.g., coordinate reference system, edge interpolation)
-- A set of [memory layouts](https://geoarrow.org/format.html) to represent geometry
+[pyarrow]: https://arrow.apache.org/docs/python/index.html
+[arrow-cpp]: https://arrow.apache.org/docs/cpp/index.html
+[arrow-rs]: https://docs.rs/arrow/latest/arrow/
+
+- A set of [memory layouts](../format.html) to represent geometry
   arrays using features of the Arrow type system/format (e.g., points can be
   represented as a `struct<x: double, y: double>`) instead of serialized into
-  well-known binary or some other binary format.
+  [well-known binary][wkb-spec] or some other binary format.
+- A set of [extension type](../extension-types.html) definitions
+  to propagate type-level spatial metadata (e.g., coordinate reference system, edge interpolation)
 
-In addition to some minor updates to improve clarity, GeoArrow 0.2 includes four
+[wkb-spec]: https://libgeos.org/specifications/wkb/#iso-wkb
+
+## Notable changes
+
+In addition to some minor updates to improve clarity, GeoArrow 0.2 includes a few
 notable changes.
 
-First, the language defining the content of the `"crs"` key in the extension metadata
+### New array types
+
+The GeoArrow 0.2 specification formalizes three new array types:
+
+- The ["box" memory layout](../format.html#box) represents an array of axis-aligned bounding boxes, represented as an Arrow struct.
+- The ["geometry" memory layout](../format.html#geometry) allows arbitrary geometries to be
+  represented within a single array, even when the geometry type differs across rows. It's implemented as an [Arrow union][arrow-union-layout] of the other native encodings.
+- The ["geometrycollection" memory layout](../format.html#geometrycollection) allows arbitrary geometries to be
+  represented within a single feature. It uses an Arrow list around an Arrow union.
+
+[arrow-union-layout]: https://arrow.apache.org/docs/format/Columnar.html#union-layout
+
+### Coordinate Reference System updates
+
+The language defining the content of the `"crs"` key in the extension metadata
 was updated to simplify the dependency requirements of producers that did not have
-a built-in ability to produce
-[PROJJSON](https://proj.org/en/stable/specifications/projjson.html), which was
-previously the only option allowed by the specification. Most producers of GeoArrow
-metadata have the ability to write PROJJSON and should continue to do so; however,
-other producer are now allowed to pass on whatever information they do have as a string.
-For example, the following extension metadata is now permitted:
+a built-in ability to produce [PROJJSON][projjson], which was
+previously the only option allowed by the specification.
 
-```json
-{"crs": "EPSG:32620"}
-```
+[projjson]: https://proj.org/en/stable/specifications/projjson.html
 
-For cases where the producer knew exactly how it chose to serialize the CRS,
+Most producers of GeoArrow
+metadata have the ability to write PROJJSON and should continue to do so. However,
+other producers are now allowed to pass on whatever information they do have as a string.
+
+For cases where the producer knows exactly how it serializes the CRS,
 the optional `"crs_type"` field was added and can take on the value `"authority_code"`,
 `"srid"`, `"projjson"`, or `"wkt2:2019"`. Among other use cases, this enabled the
 [C++ implementation of the Parquet GEOMETRY type](https://github.com/apache/arrow/pull/45459)
 to losslessly pass on all the information stored in a Parquet logical type annotation
 for GEOMETRY or GEOGRAPHY in a dependency-sensitive environment.
+
+- PROJJSON example
+
+  ```json
+  {
+    "crs": {"$schema":"https://proj.org/schemas/v0.7/projjson.schema.json","type":"ProjectedCRS","name":"WGS 84 / UTM zone 20N","base_crs":{"name":"WGS 84","datum_ensemble":{"name":"World Geodetic System 1984 ensemble","members":[{"name":"World Geodetic System 1984 (Transit)","id":{"authority":"EPSG","code":1166}},{"name":"World Geodetic System 1984 (G730)","id":{"authority":"EPSG","code":1152}},{"name":"World Geodetic System 1984 (G873)","id":{"authority":"EPSG","code":1153}},{"name":"World Geodetic System 1984 (G1150)","id":{"authority":"EPSG","code":1154}},{"name":"World Geodetic System 1984 (G1674)","id":{"authority":"EPSG","code":1155}},{"name":"World Geodetic System 1984 (G1762)","id":{"authority":"EPSG","code":1156}},{"name":"World Geodetic System 1984 (G2139)","id":{"authority":"EPSG","code":1309}},{"name":"World Geodetic System 1984 (G2296)","id":{"authority":"EPSG","code":1383}}],"ellipsoid":{"name":"WGS 84","semi_major_axis":6378137,"inverse_flattening":298.257223563},"accuracy":"2.0","id":{"authority":"EPSG","code":6326}},"coordinate_system":{"subtype":"ellipsoidal","axis":[{"name":"Geodetic latitude","abbreviation":"Lat","direction":"north","unit":"degree"},{"name":"Geodetic longitude","abbreviation":"Lon","direction":"east","unit":"degree"}]},"id":{"authority":"EPSG","code":4326}},"conversion":{"name":"UTM zone 20N","method":{"name":"Transverse Mercator","id":{"authority":"EPSG","code":9807}},"parameters":[{"name":"Latitude of natural origin","value":0,"unit":"degree","id":{"authority":"EPSG","code":8801}},{"name":"Longitude of natural origin","value":-63,"unit":"degree","id":{"authority":"EPSG","code":8802}},{"name":"Scale factor at natural origin","value":0.9996,"unit":"unity","id":{"authority":"EPSG","code":8805}},{"name":"False easting","value":500000,"unit":"metre","id":{"authority":"EPSG","code":8806}},{"name":"False northing","value":0,"unit":"metre","id":{"authority":"EPSG","code":8807}}]},"coordinate_system":{"subtype":"Cartesian","axis":[{"name":"Easting","abbreviation":"E","direction":"east","unit":"metre"},{"name":"Northing","abbreviation":"N","direction":"north","unit":"metre"}]},"scope":"Navigation and medium accuracy spatial referencing.","area":"Between 66°W and 60°W, northern hemisphere between equator and 84°N, onshore and offshore. Anguilla. Antigua and Barbuda. Bermuda. Brazil. British Virgin Islands. Canada - New Brunswick; Labrador; Nova Scotia; Nunavut; Prince Edward Island; Quebec. Dominica. Greenland. Grenada. Guadeloupe. Guyana. Martinique. Montserrat. Puerto Rico. St Kitts and Nevis. St Barthelemy. St Lucia. St Maarten, St Martin. St Vincent and the Grenadines. Trinidad and Tobago. Venezuela. US Virgin Islands.","bbox":{"south_latitude":0,"west_longitude":-66,"north_latitude":84,"east_longitude":-60},"id":{"authority":"EPSG","code":32620}},
+    "crs_type": "projjson"
+  }
+  ```
+
+- WKT2 example:
+
+  ```json
+  {
+    "crs": 'PROJCRS["WGS 84 / UTM zone 20N",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["UTM zone 20N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",-63,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Navigation and medium accuracy spatial referencing."],AREA["Between 66°W and 60°W, northern hemisphere between equator and 84°N, onshore and offshore. Anguilla. Antigua and Barbuda. Bermuda. Brazil. British Virgin Islands. Canada - New Brunswick; Labrador; Nova Scotia; Nunavut; Prince Edward Island; Quebec. Dominica. Greenland. Grenada. Guadeloupe. Guyana. Martinique. Montserrat. Puerto Rico. St Kitts and Nevis. St Barthelemy. St Lucia. St Maarten, St Martin. St Vincent and the Grenadines. Trinidad and Tobago. Venezuela. US Virgin Islands."],BBOX[0,-66,84,-60]],ID["EPSG",32620]]',
+    "crs_type": "wkt2:2019",
+  }
+  ```
+
+- Authority code example:
+
+  ```json
+  {
+      "crs": "EPSG:32620",
+      "crs_type": "authority_code",
+  }
+  ```
+
+  Note that this should only be used as a last resort. Producers should prefer writing a complete description of the CRS.
+
+- SRID example:
+
+  ```json
+  {
+      "crs": "32620",
+      "crs_type": "srid",
+  }
+  ```
+
+  Note that this should only be used as a last resort for database drivers or readers that have no other option.
+
+- Opaque CRS example:
+
+  ```json
+  {
+      "crs": 'PROJCS["WGS 84 / UTM zone 20N",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-63],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","32620"]]',
+  }
+  ```
+
+  Opaque CRS strings should only be used as a last resort when the producer has no way to communicate more information. In this case, the CRS is a WKT1 string, which doesn't fit into any other allowed variants.
+
+### Newly supported data types for WKT and WKB arrays
+
+Version 1.4 of the Arrow Columnar format added ["binary view"][binary-view-spec] and "string view" layouts. This new representation for an array of strings or bytes [is][string-view-ref-1] [widely][string-view-ref-2] [held][string-view-ref-3] [to be][string-view-ref-4] more performant for common use cases.
+
+GeoArrow 0.2 allows serialized Well-Known Binary (WKB) and Well-Known Text (WKT) arrays to be backed by these new binary view and string view data types.
+
+[binary-view-spec]: https://arrow.apache.org/docs/format/Columnar.html#variable-size-binary-view-layout
+[string-view-ref-1]: https://cedardb.com/blog/german_strings/
+[string-view-ref-2]: https://datafusion.apache.org/blog/2024/09/13/string-view-german-style-strings-part-2/
+[string-view-ref-3]: https://engineering.fb.com/2024/02/20/developer-tools/velox-apache-arrow-15-composable-data-management/
+[string-view-ref-4]: https://pola.rs/posts/polars-string-type/
+
+### Edge interpolations
 
 Second, the `"edges"` parameter, which could previously have been omitted (to indicate
 planar/linear edges as defined by simple features) or taken the value `"spherical"`
@@ -56,19 +147,8 @@ four other options (`"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`) were
 added to ensure GeoArrow can faithfully represent the intent of an arbitrary Parquet
 and/or Iceberg source.
 
-Third, the GeoArrow 0.2 specification formalizes two types that had been used
-internally in the [GeoArrow Rust implementation](https://github.com/geoarrow/geoarrow-rs):
+## Implementations
 
-- The "box" memory layout and corresponding `geoarrow.box` extension name represents
-  min/max values of X, Y, [Z, [M]], represented as a struct similar to a point with
-  separated coordinates.
-- The "geometry" and "geometrycollection" memory layouts and corresponding `geoarrow.geometry`
-  and `geoarrow.geometrycollection` extension names allow arbitrary geometries to be
-  represented within a single feature and within a single array using a union of the other
-  native encodings.
-
-While the box type is available in all implementations, the geometry and geometrycollection
-types are currently only available in the Rust implementation.
 
 ## Rust
 
