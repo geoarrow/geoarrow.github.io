@@ -46,10 +46,10 @@ notable changes.
 
 The GeoArrow 0.2 specification formalizes three new array types:
 
-- The ["box" memory layout](../format.html#box) represents an array of axis-aligned bounding boxes, represented as an Arrow struct.
-- The ["geometry" memory layout](../format.html#geometry) allows arbitrary geometries to be
+- The [**Box** memory layout](../format.html#box) represents an array of axis-aligned bounding boxes, represented as an Arrow struct.
+- The [**Geometry** memory layout](../format.html#geometry) allows arbitrary geometries to be
   represented within a single array, even when the geometry type differs across rows. It's implemented as an [Arrow union][arrow-union-layout] of the other native encodings.
-- The ["geometrycollection" memory layout](../format.html#geometrycollection) allows arbitrary geometries to be
+- The [**Geometry Collection** memory layout](../format.html#geometrycollection) allows arbitrary geometries to be
   represented within a single feature. It uses an Arrow list around an Arrow union.
 
 [arrow-union-layout]: https://arrow.apache.org/docs/format/Columnar.html#union-layout
