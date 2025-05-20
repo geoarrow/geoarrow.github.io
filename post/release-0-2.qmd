@@ -138,7 +138,7 @@ GeoArrow 0.2 allows serialized Well-Known Binary (WKB) and Well-Known Text (WKT)
 
 ### Edge interpolations
 
-Second, the `"edges"` parameter, which could previously have been omitted (to indicate
+The `"edges"` parameter, which could previously have been omitted (to indicate
 planar/linear edges as defined by simple features) or taken the value `"spherical"`
 to indicate that vertices should be connected by approximating the edge as the
 shortest path on a perfect sphere. In the recently voted in
