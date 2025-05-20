@@ -124,7 +124,7 @@ for GEOMETRY or GEOGRAPHY in a dependency-sensitive environment.
 
   Opaque CRS strings should only be used as a last resort when the producer has no way to communicate more information. In this case, the CRS is a WKT1 string, which doesn't fit into any other allowed variants.
 
-### Newly supported data types for WKT and WKB arrays
+### Newly-supported data types for WKT and WKB arrays
 
 Version 1.4 of the Arrow Columnar format added ["binary view"][binary-view-spec] and "string view" layouts. This new representation for an array of strings or bytes [is][string-view-ref-1] [widely][string-view-ref-2] [held][string-view-ref-3] [to be][string-view-ref-4] more performant for common use cases.
 
