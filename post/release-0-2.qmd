@@ -294,11 +294,11 @@ plotted together properly. The `viz()` one-liner works on any
 and is a massive quality-of-life improvement when working with large-ish data in a notebook.
 
 ```python
-from geoarrow.rust.io import read_flatgeobuf
+import geoarrow.pyarrow.io
 from lonboard import viz
 
 url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
-viz(read_flatgeobuf(url))
+viz(geoarrow.pyarrow.io.read_pyogrio_table(url))
 ```
 
 ![](release-0-2-lonboard.png)
