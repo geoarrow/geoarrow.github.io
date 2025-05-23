@@ -147,16 +147,37 @@ four other options (`"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`) were
 added to ensure GeoArrow can faithfully represent the intent of an arbitrary Parquet
 and/or Iceberg source.
 
+### Suggestion to use _separated_ coordinate layout
+
+GeoArrow supports two coordinate representations, [separated](../format.html#coordinate-separated) and [interleaved](../format.html#coordinate-interleaved), for maximum compatibility with how different systems may wish to store coordinates.
+
+While both coordinate representations continue to be supported, we now recommend the separated representation for most use cases.
+
 ## Implementations
 
+Several GeoArrow implementations have been updated to support new features in GeoArrow 0.2.
 
-## Rust
+Keep in mind that the implementation status here is _current as of May 2025_. If reading this in the future, refer also to individual projects for the most up-to-date information.
 
-- https://geoarrow.org/geoarrow-rs
+### Rust
 
-Supports new types, metadata and ...?
+[`geoarrow-rs`](https://geoarrow.org/geoarrow-rs), the Rust implementation of GeoArrow, has been undergoing a large refactor from a single, overly-monolithic crate to a monorepo of smaller crates, each with a more well-defined scope. These smaller crates better communicate which parts of the project are production ready and which parts are more prototypical.
 
-## C/C++
+`geoarrow-rs` is now split into the following crates:
+
+- [`geoarrow-schema`]: GeoArrow geometry type and metadata definitions.
+- [`geoarrow-array`]: GeoArrow array definitions.
+- [`geoarrow-cast`]: Functions for converting from one GeoArrow geometry type to another.
+
+[`geoarrow-schema`]: https://docs.rs/geoarrow-schema
+[`geoarrow-array`]: https://docs.rs/geoarrow-array
+[`geoarrow-cast`]: https://docs.rs/geoarrow-cast
+
+These core crates are relatively stable and support the full GeoArrow 0.2 specification.
+
+Additional crates are under development but not quite released for public usage. Native Rust integration with GeoParquet will be released soon. Support for other file formats like FlatGeobuf, GeoJSON, CSV, and Shapefile is under development, as are geometry operations backed by the [`geo`](https://docs.rs/geo) crate or by linking to GEOS.
+
+### C/C++
 
 - https://geoarrow.org/geoarrow-c
 - Supports new types, metadata
@@ -166,7 +187,7 @@ TODO:
 
 - Import geometry union type
 
-## Python
+### Python
 
 - https://geoarrow.org/geoarrow-python
 - https://geoarrow.org/geoarrow-rs/python
@@ -195,7 +216,7 @@ the [Arrow PyCapsule Interface](https://arrow.apache.org/docs/format/CDataInterf
 
 ...
 
-## R
+### R
 
 - https://geoarrow.org/geoarrow-r
 - https://github.com/JosiahParry/geoarrowrs
