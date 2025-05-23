@@ -141,10 +141,10 @@ GeoArrow 0.2 allows serialized Well-Known Binary (WKB) and Well-Known Text (WKT)
 The `"edges"` parameter, which could previously have been omitted (to indicate
 planar/linear edges as defined by simple features) or taken the value `"spherical"`
 to indicate that vertices should be connected by approximating the edge as the
-shortest path on a perfect sphere. In the recently voted in
+shortest path on a perfect sphere. The recently added
 [GEOMETRY and GEOGRAPHY types in Parquet and Iceberg](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/),
-four other options (`"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`) were
-added to ensure GeoArrow can faithfully represent the intent of an arbitrary Parquet
+included four other options: `"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`. We
+also added these to GeoArrow such that it can faithfully represent the intent of an arbitrary Parquet
 and/or Iceberg source.
 
 ### Suggestion to use _separated_ coordinate layout
@@ -179,18 +179,19 @@ Additional crates are under development but not quite released for public usage.
 
 ### C/C++
 
-- https://geoarrow.org/geoarrow-c
-- Supports new types, metadata
-- Cleaned up/simplified interface
+The geoarrow project also includes [C/C++ bindings](https://geoarrow.org/geoarrow-c) to produce and
+consume GeoArrow arrays from C based languages. The scope of geoarrow-c is more limited than
+that of geoarrow-rust; however, it does include a purpose-built WKT/WKB readers/writers and can
+cast those to and from native encodings. To maximize usability, geoarrow-c can be amalgamated
+into a single .c/.h pair depending only on [nanoarrow](https://arrow.apache.org/nanoarrow)
+(which also can be amalgamated into a single .c/.h pair).
 
-TODO:
-
-- Import geometry union type
+The latest release of geoarrow-c supports the full GeoArrow 0.2 specification (with the exception
+of union types) and includes experimental new C++ helpers to make it more ergonomic to work
+with GeoArrow arrays passed over the
+[Arrow C Data Interface](https://arrow.apache.org/docs/format/CDataInterface.html) in C++.
 
 ### Python
-
-- https://geoarrow.org/geoarrow-python
-- https://geoarrow.org/geoarrow-rs/python
 
 The Initial [geoarrow-pyarrow](https://github.com/geoarrow/geoarrow-python) implementation
 depended completely on geoarrow's C implementation for almost everything; however it quickly
@@ -204,26 +205,25 @@ The result was two packages:
   use PyArrow data structures for input/output but use various GeoArrow implementations
   under the hood to do the actual crunching.
 
-The changes since the 0.1 release were mostly structure; however new spec features were
+The changes since the 0.1 release were mostly structural; however new spec features were
 also added including support for the box type and support for non-PROJJSON CRS encodings.
 
-Example ...
-
 Whereas `geoarrow-pyarrow` and `geoarrow-types` are aimed squarely at the PyArrow
-ecosystem, [`geoarrow-rust`](https://geoarrow.org/geoarrow-rs/python) provides a
-feature-rich set of compute and IO functions with input/output based on
+ecosystem, [`geoarrow-rust`](https://geoarrow.org/geoarrow-rs/python) provides an
+experimental set of compute and IO functions with input/output based on
 the [Arrow PyCapsule Interface](https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html).
-
-...
+As the project evolves, we envison synergy among these projects to provide magical
+interoperability and spatial compute capability to pyarrow users and beyond.
 
 ### R
 
-- https://geoarrow.org/geoarrow-r
-- https://github.com/JosiahParry/geoarrowrs
+The [GeoArrow R bindings](https://geoarrow.org/geoarrow-r) provide integration between
+the r-spatial ecosystem (e.g., the [sf package](https://r-spatial.github.io/sf)) and
+the Arrow ecosystems (e.g., the [arrow](https://arrow.apache.org/docs/r) and
+[nanoarrow](https://arrow.apache.org/nanoarrow/latest/r/) packages).
 
-TODO:
-
-- All new types, metadata (easier when geoarrow-c supports it)
+The latest geoarrow-r release includes updated geoarrow-c internals and support
+for features of the GeoArrow 0.2 specification (except union types).
 
 ## Data
 
@@ -271,7 +271,7 @@ import geoarrow.pyarrow as ga
 from geoarrow.rust.io import read_flatgeobuf
 import geopandas
 
-url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"
 
 table_rs = read_flatgeobuf(url)
 df = geopandas.GeoDataFrame.from_arrow(table_rs)
@@ -318,7 +318,7 @@ and is a massive quality-of-life improvement when working with large-ish data in
 import geoarrow.pyarrow.io
 from lonboard import viz
 
-url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"
 viz(geoarrow.pyarrow.io.read_pyogrio_table(url))
 ```
 
@@ -352,7 +352,7 @@ duckdb.load_extension("spatial")
 duckdb.sql("CALL register_geoarrow_extensions()")
 
 # Create a GeoDataFrame
-url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"
 df = geopandas.read_file(url)
 
 # Create the Arrow table and use select directly from it with DuckDB
@@ -392,7 +392,7 @@ Apache Sedona's 1.6.0 release
 [added `dataframe_to_arrow()`](https://github.com/apache/sedona/pull/1767)
 in its Python bindings and its 1.7.0 release added an
 [Arrow-powered `create_spatial_dataframe()`](https://github.com/apache/sedona/pull/1825)
-creator to accellerate the Sedona--GeoPandas integration. In addition to higher
+creator to accellerate the Sedona--GeoPandas integration. In addition to better
 performance when converting between GeoPandas and Spark, this change accellerated
 visualization of Spark `DataFrame`s with Geometry and general integration
 with tools that support GeoArrow.
@@ -403,7 +403,7 @@ import lonboard
 from sedona.spark import SedonaContext
 from sedona.utils.geoarrow import create_spatial_dataframe, dataframe_to_arrow
 
-url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0-rc6/natural-earth/files/natural-earth_cities.fgb"
+url = "https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"
 df = geopandas.read_file(url)
 
 config = SedonaContext.builder().getOrCreate()
@@ -432,7 +432,9 @@ into Sedona!
 
 ### GDAL
 
-GDAL added its first [Arrow integration in RFC 86](https://gdal.org/en/stable/development/rfc/rfc86_column_oriented_api.html). This integration added a C API to work around the performance limitations of OGR's row-based reader and was picked up by [pyogrio](https://github.com/geopandas/pyogrio) almost immediately to enable faster IO - particularly for GeoPackage and FlatGeoBuf - for geopandas users. About a year later [a matching write API was added](https://github.com/OSGeo/gdal/pull/8517) and was used by GDAL itself to [speed up](https://github.com/OSGeo/gdal/pull/8560) its popular `ogr2ogr` command-line interface.
+GDAL added its first [Arrow integration in RFC 86](https://gdal.org/en/stable/development/rfc/rfc86_column_oriented_api.html). This integration added a C API to work around the performance limitations of OGR's row-based reader and was picked up by [pyogrio](https://github.com/geopandas/pyogrio) almost immediately to enable faster IO - particularly for GeoPackage and FlatGeoBuf - for geopandas users. About a year later [a matching write API was added](https://github.com/OSGeo/gdal/pull/8517) and was used by GDAL itself to [speed up](https://github.com/OSGeo/gdal/pull/8560) its popular `ogr2ogr` command-line interface. Most recently, GDAL 3.11.0
+[added an Arrow Database Connectivity (ADBC)](https://gdal.org/en/stable/drivers/vector/adbc.html)
+integration to read geometry columns from ADBC-integrated datasources like PostGIS and DuckDB.
 
 Specifically related to the GeoArrow specification, GDAL 3.8.0 included the ability to
 [export geometry through its Arrow interface with GeoArrow type and CRS metadata](https://github.com/OSGeo/gdal/pull/8617).
@@ -444,11 +446,10 @@ extension type with the appropriate `"crs"` in the extension metadata.
 Full credit to [@rouault](https://github.com/rouault) for implementing these changes in
 the GDAL project!
 
-### Ibis
-
-https://github.com/ibis-project/ibis/pull/9549
-
 ## What's next?
 
-- Discrete global grids
-- Raster
+We're thrilled that the GeoArrow specification has unlocked interoperability among spatial
+libraries and that the specification continues to evolve to serve the needs of the rapidly
+evolving spatial ecosystem. We've had discussions about how to represent raster data and how
+to integrate discrete global grids like S2 and H3...we look forward to continuing to grow
+the community and we're excited to see where it will go!
