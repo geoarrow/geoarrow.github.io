@@ -165,13 +165,9 @@ Keep in mind that the implementation status here is _current as of May 2025_. If
 
 `geoarrow-rs` is now split into the following crates:
 
-- [`geoarrow-schema`]: GeoArrow geometry type and metadata definitions.
-- [`geoarrow-array`]: GeoArrow array definitions.
-- [`geoarrow-cast`]: Functions for converting from one GeoArrow geometry type to another.
-
-[`geoarrow-schema`]: https://docs.rs/geoarrow-schema
-[`geoarrow-array`]: https://docs.rs/geoarrow-array
-[`geoarrow-cast`]: https://docs.rs/geoarrow-cast
+- [`geoarrow-schema`](https://docs.rs/geoarrow-schema): GeoArrow geometry type and metadata definitions.
+- [`geoarrow-array`](https://docs.rs/geoarrow-array): GeoArrow array definitions.
+- [`geoarrow-cast`](https://docs.rs/geoarrow-cast): Functions for converting from one GeoArrow geometry type to another.
 
 These core crates are relatively stable and support the full GeoArrow 0.2 specification.
 
