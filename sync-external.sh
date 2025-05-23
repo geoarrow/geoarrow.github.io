@@ -39,7 +39,7 @@ popd
 
 pushd geoarrow-data
 
-for f in example/README.md ns-water/README.md microsoft-buildings/README.md; do
+for f in ./*/README.md; do
   sed -i.bak 's/^#/##/' $f
   rm $f.bak
 done
