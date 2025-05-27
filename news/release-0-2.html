@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dewey Dunnington">
+<meta name="author" content="Kyle Barron">
+<meta name="author" content="Joris Van den Bossche">
+<meta name="dcterms.date" content="2025-05-27">
+
+<title>GeoArrow 0.2 Release – GeoArrow</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../geoarrow_logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../geoarrow_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">GeoArrow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../format.html"> 
+<span class="menu-text">Format</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../extension-types.html"> 
+<span class="menu-text">Metadata</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-implementations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Implementations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-implementations">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/geoarrow/geoarrow-c">
+ <span class="dropdown-text">C/C++</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/geoarrow/geoarrow-rs">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/geoarrow/geoarrow-python">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/geoarrow/geoarrow-r">
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md">
+ <span class="dropdown-text">WebAssembly</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../news/index.html"> 
+<span class="menu-text">News</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/geoarrow/geoarrow"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#specification" id="toc-specification" class="nav-link active" data-scroll-target="#specification">Specification</a></li>
+  <li><a href="#notable-changes" id="toc-notable-changes" class="nav-link" data-scroll-target="#notable-changes">Notable changes</a>
+  <ul class="collapse">
+  <li><a href="#new-array-types" id="toc-new-array-types" class="nav-link" data-scroll-target="#new-array-types">New array types</a></li>
+  <li><a href="#coordinate-reference-system-updates" id="toc-coordinate-reference-system-updates" class="nav-link" data-scroll-target="#coordinate-reference-system-updates">Coordinate Reference System updates</a></li>
+  <li><a href="#newly-supported-data-types-for-wkt-and-wkb-arrays" id="toc-newly-supported-data-types-for-wkt-and-wkb-arrays" class="nav-link" data-scroll-target="#newly-supported-data-types-for-wkt-and-wkb-arrays">Newly-supported data types for WKT and WKB arrays</a></li>
+  <li><a href="#edge-interpolations" id="toc-edge-interpolations" class="nav-link" data-scroll-target="#edge-interpolations">Edge interpolations</a></li>
+  <li><a href="#suggestion-to-use-separated-coordinate-layout" id="toc-suggestion-to-use-separated-coordinate-layout" class="nav-link" data-scroll-target="#suggestion-to-use-separated-coordinate-layout">Suggestion to use <em>separated</em> coordinate layout</a></li>
+  </ul></li>
+  <li><a href="#implementations" id="toc-implementations" class="nav-link" data-scroll-target="#implementations">Implementations</a>
+  <ul class="collapse">
+  <li><a href="#rust" id="toc-rust" class="nav-link" data-scroll-target="#rust">Rust</a></li>
+  <li><a href="#cc" id="toc-cc" class="nav-link" data-scroll-target="#cc">C/C++</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  </ul></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#ecosystem" id="toc-ecosystem" class="nav-link" data-scroll-target="#ecosystem">Ecosystem</a>
+  <ul class="collapse">
+  <li><a href="#geopandas" id="toc-geopandas" class="nav-link" data-scroll-target="#geopandas">GeoPandas</a></li>
+  <li><a href="#lonboard" id="toc-lonboard" class="nav-link" data-scroll-target="#lonboard">Lonboard</a></li>
+  <li><a href="#duckdb" id="toc-duckdb" class="nav-link" data-scroll-target="#duckdb">DuckDB</a></li>
+  <li><a href="#apache-sedona" id="toc-apache-sedona" class="nav-link" data-scroll-target="#apache-sedona">Apache Sedona</a></li>
+  <li><a href="#gdal" id="toc-gdal" class="nav-link" data-scroll-target="#gdal">GDAL</a></li>
+  </ul></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GeoArrow 0.2 Release</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://dewey.dunnington.ca/">Dewey Dunnington</a> </p>
+             <p><a href="https://kylebarron.dev/">Kyle Barron</a> </p>
+             <p><a href="https://jorisvandenbossche.github.io/">Joris Van den Bossche</a> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 27, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We released the first version of the GeoArrow specification (v0.1) in September 2023. Since then we’ve learned from the <a href="#ecosystem">numerous integrations</a> implemented by ourselves and others in the spatial community that highlighted ambiguities in the text of the first version and use-cases that necessitated changes to the specification. In this post we highlight new updates to the specification, updates to implementations, and community-driven integrations since the last specification release.</p>
+<section id="specification" class="level2">
+<h2 class="anchored" data-anchor-id="specification">Specification</h2>
+<p>The GeoArrow specification establishes conventions for representing spatial data in <a href="https://arrow.apache.org">Apache Arrow</a> formats (e.g., C Data Interface, Serialized IPC) and implementations (e.g., <a href="https://arrow.apache.org/docs/python/index.html">PyArrow</a>, <a href="https://arrow.apache.org/docs/cpp/index.html">Arrow C++</a>, <a href="https://docs.rs/arrow/latest/arrow/">arrow-rs</a>). It is separated into two parts:</p>
+<ul>
+<li>A set of <a href="../format.html">memory layouts</a> to represent geometry arrays using features of the Arrow type system/format (e.g., points can be represented as a <code>struct&lt;x: double, y: double&gt;</code>) instead of serialized into <a href="https://libgeos.org/specifications/wkb/#iso-wkb">well-known binary</a> or some other binary format.</li>
+<li>A set of <a href="../extension-types.html">extension type</a> definitions to propagate type-level spatial metadata (e.g., coordinate reference system, edge interpolation)</li>
+</ul>
+</section>
+<section id="notable-changes" class="level2">
+<h2 class="anchored" data-anchor-id="notable-changes">Notable changes</h2>
+<p>In addition to some minor updates to improve clarity, GeoArrow 0.2 includes a few notable changes.</p>
+<section id="new-array-types" class="level3">
+<h3 class="anchored" data-anchor-id="new-array-types">New array types</h3>
+<p>The GeoArrow 0.2 specification formalizes three new array types:</p>
+<ul>
+<li>The <a href="../format.html#box"><strong>Box</strong> memory layout</a> represents an array of axis-aligned bounding boxes, represented as an Arrow struct.</li>
+<li>The <a href="../format.html#geometry"><strong>Geometry</strong> memory layout</a> allows arbitrary geometries to be represented within a single array, even when the geometry type differs across rows. It’s implemented as an <a href="https://arrow.apache.org/docs/format/Columnar.html#union-layout">Arrow union</a> of the other native encodings.</li>
+<li>The <a href="../format.html#geometrycollection"><strong>Geometry Collection</strong> memory layout</a> allows arbitrary geometries to be represented within a single feature. It uses an Arrow list around an Arrow union.</li>
+</ul>
+</section>
+<section id="coordinate-reference-system-updates" class="level3">
+<h3 class="anchored" data-anchor-id="coordinate-reference-system-updates">Coordinate Reference System updates</h3>
+<p>The language defining the content of the <code>"crs"</code> key in the extension metadata was updated to simplify the dependency requirements of producers that did not have a built-in ability to produce <a href="https://proj.org/en/stable/specifications/projjson.html">PROJJSON</a>, which was previously the only option allowed by the specification.</p>
+<p>Most producers of GeoArrow metadata have the ability to write PROJJSON and should continue to do so. However, other producers are now allowed to pass on whatever information they do have as a string.</p>
+<p>For cases where the producer knows exactly how it serializes the CRS, the optional <code>"crs_type"</code> field was added and can take on the value <code>"authority_code"</code>, <code>"srid"</code>, <code>"projjson"</code>, or <code>"wkt2:2019"</code>. Among other use cases, this enabled the <a href="https://github.com/apache/arrow/pull/45459">C++ implementation of the Parquet GEOMETRY type</a> to losslessly pass on all the information stored in a Parquet logical type annotation for GEOMETRY or GEOGRAPHY in a dependency-sensitive environment.</p>
+<ul>
+<li><p>PROJJSON example</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"crs"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"$schema"</span><span class="fu">:</span><span class="st">"https://proj.org/schemas/v0.7/projjson.schema.json"</span><span class="fu">,</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"ProjectedCRS"</span><span class="fu">,</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"WGS 84 / UTM zone 20N"</span><span class="fu">,</span><span class="dt">"base_crs"</span><span class="fu">:{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"WGS 84"</span><span class="fu">,</span><span class="dt">"datum_ensemble"</span><span class="fu">:{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 ensemble"</span><span class="fu">,</span><span class="dt">"members"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (Transit)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1166</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G730)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1152</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G873)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1153</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G1150)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1154</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G1674)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1155</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G1762)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1156</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G2139)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1309</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"World Geodetic System 1984 (G2296)"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">1383</span><span class="fu">}}</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"ellipsoid"</span><span class="fu">:{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"WGS 84"</span><span class="fu">,</span><span class="dt">"semi_major_axis"</span><span class="fu">:</span><span class="dv">6378137</span><span class="fu">,</span><span class="dt">"inverse_flattening"</span><span class="fu">:</span><span class="fl">298.257223563</span><span class="fu">},</span><span class="dt">"accuracy"</span><span class="fu">:</span><span class="st">"2.0"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">6326</span><span class="fu">}},</span><span class="dt">"coordinate_system"</span><span class="fu">:{</span><span class="dt">"subtype"</span><span class="fu">:</span><span class="st">"ellipsoidal"</span><span class="fu">,</span><span class="dt">"axis"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Geodetic latitude"</span><span class="fu">,</span><span class="dt">"abbreviation"</span><span class="fu">:</span><span class="st">"Lat"</span><span class="fu">,</span><span class="dt">"direction"</span><span class="fu">:</span><span class="st">"north"</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"degree"</span><span class="fu">}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Geodetic longitude"</span><span class="fu">,</span><span class="dt">"abbreviation"</span><span class="fu">:</span><span class="st">"Lon"</span><span class="fu">,</span><span class="dt">"direction"</span><span class="fu">:</span><span class="st">"east"</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"degree"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">},</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">4326</span><span class="fu">}},</span><span class="dt">"conversion"</span><span class="fu">:{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"UTM zone 20N"</span><span class="fu">,</span><span class="dt">"method"</span><span class="fu">:{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Transverse Mercator"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">9807</span><span class="fu">}},</span><span class="dt">"parameters"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Latitude of natural origin"</span><span class="fu">,</span><span class="dt">"value"</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"degree"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">8801</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Longitude of natural origin"</span><span class="fu">,</span><span class="dt">"value"</span><span class="fu">:</span><span class="dv">-63</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"degree"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">8802</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Scale factor at natural origin"</span><span class="fu">,</span><span class="dt">"value"</span><span class="fu">:</span><span class="fl">0.9996</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"unity"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">8805</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"False easting"</span><span class="fu">,</span><span class="dt">"value"</span><span class="fu">:</span><span class="dv">500000</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"metre"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">8806</span><span class="fu">}}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"False northing"</span><span class="fu">,</span><span class="dt">"value"</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"metre"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">8807</span><span class="fu">}}</span><span class="ot">]</span><span class="fu">},</span><span class="dt">"coordinate_system"</span><span class="fu">:{</span><span class="dt">"subtype"</span><span class="fu">:</span><span class="st">"Cartesian"</span><span class="fu">,</span><span class="dt">"axis"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Easting"</span><span class="fu">,</span><span class="dt">"abbreviation"</span><span class="fu">:</span><span class="st">"E"</span><span class="fu">,</span><span class="dt">"direction"</span><span class="fu">:</span><span class="st">"east"</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"metre"</span><span class="fu">}</span><span class="ot">,</span><span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Northing"</span><span class="fu">,</span><span class="dt">"abbreviation"</span><span class="fu">:</span><span class="st">"N"</span><span class="fu">,</span><span class="dt">"direction"</span><span class="fu">:</span><span class="st">"north"</span><span class="fu">,</span><span class="dt">"unit"</span><span class="fu">:</span><span class="st">"metre"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">},</span><span class="dt">"scope"</span><span class="fu">:</span><span class="st">"Navigation and medium accuracy spatial referencing."</span><span class="fu">,</span><span class="dt">"area"</span><span class="fu">:</span><span class="st">"Between 66°W and 60°W, northern hemisphere between equator and 84°N, onshore and offshore. Anguilla. Antigua and Barbuda. Bermuda. Brazil. British Virgin Islands. Canada - New Brunswick; Labrador; Nova Scotia; Nunavut; Prince Edward Island; Quebec. Dominica. Greenland. Grenada. Guadeloupe. Guyana. Martinique. Montserrat. Puerto Rico. St Kitts and Nevis. St Barthelemy. St Lucia. St Maarten, St Martin. St Vincent and the Grenadines. Trinidad and Tobago. Venezuela. US Virgin Islands."</span><span class="fu">,</span><span class="dt">"bbox"</span><span class="fu">:{</span><span class="dt">"south_latitude"</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">"west_longitude"</span><span class="fu">:</span><span class="dv">-66</span><span class="fu">,</span><span class="dt">"north_latitude"</span><span class="fu">:</span><span class="dv">84</span><span class="fu">,</span><span class="dt">"east_longitude"</span><span class="fu">:</span><span class="dv">-60</span><span class="fu">},</span><span class="dt">"id"</span><span class="fu">:{</span><span class="dt">"authority"</span><span class="fu">:</span><span class="st">"EPSG"</span><span class="fu">,</span><span class="dt">"code"</span><span class="fu">:</span><span class="dv">32620</span><span class="fu">}},</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"crs_type"</span><span class="fu">:</span> <span class="st">"projjson"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>WKT2 example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"crs"</span><span class="fu">:</span> <span class="er">'PROJCRS</span><span class="ot">[</span><span class="st">"WGS 84 / UTM zone 20N"</span><span class="ot">,</span><span class="er">BASEGEOGCRS</span><span class="ot">[</span><span class="st">"WGS 84"</span><span class="ot">,</span><span class="er">ENSEMBLE</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 ensemble"</span><span class="ot">,</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (Transit)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G730)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G873)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G1150)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G1674)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G1762)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G2139)"</span><span class="ot">],</span><span class="er">MEMBER</span><span class="ot">[</span><span class="st">"World Geodetic System 1984 (G2296)"</span><span class="ot">],</span><span class="er">ELLIPSOID</span><span class="ot">[</span><span class="st">"WGS 84"</span><span class="ot">,</span><span class="dv">6378137</span><span class="ot">,</span><span class="fl">298.257223563</span><span class="ot">,</span><span class="er">LENGTHUNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">]],</span><span class="er">ENSEMBLEACCURACY</span><span class="ot">[</span><span class="fl">2.0</span><span class="ot">]],</span><span class="er">PRIMEM</span><span class="ot">[</span><span class="st">"Greenwich"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">,</span><span class="er">ANGLEUNIT</span><span class="ot">[</span><span class="st">"degree"</span><span class="ot">,</span><span class="fl">0.0174532925199433</span><span class="ot">]],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">4326</span><span class="ot">]],</span><span class="er">CONVERSION</span><span class="ot">[</span><span class="st">"UTM zone 20N"</span><span class="ot">,</span><span class="er">METHOD</span><span class="ot">[</span><span class="st">"Transverse Mercator"</span><span class="ot">,</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">9807</span><span class="ot">]],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"Latitude of natural origin"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">,</span><span class="er">ANGLEUNIT</span><span class="ot">[</span><span class="st">"degree"</span><span class="ot">,</span><span class="fl">0.0174532925199433</span><span class="ot">],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">8801</span><span class="ot">]],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"Longitude of natural origin"</span><span class="ot">,</span><span class="dv">-63</span><span class="ot">,</span><span class="er">ANGLEUNIT</span><span class="ot">[</span><span class="st">"degree"</span><span class="ot">,</span><span class="fl">0.0174532925199433</span><span class="ot">],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">8802</span><span class="ot">]],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"Scale factor at natural origin"</span><span class="ot">,</span><span class="fl">0.9996</span><span class="ot">,</span><span class="er">SCALEUNIT</span><span class="ot">[</span><span class="st">"unity"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">8805</span><span class="ot">]],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"False easting"</span><span class="ot">,</span><span class="dv">500000</span><span class="ot">,</span><span class="er">LENGTHUNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">8806</span><span class="ot">]],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"False northing"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">,</span><span class="er">LENGTHUNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">8807</span><span class="ot">]]],</span><span class="er">CS</span><span class="ot">[</span><span class="er">Cartesian</span><span class="ot">,</span><span class="dv">2</span><span class="ot">],</span><span class="er">AXIS</span><span class="ot">[</span><span class="st">"(E)"</span><span class="ot">,</span><span class="er">east</span><span class="ot">,</span><span class="er">ORDER</span><span class="ot">[</span><span class="dv">1</span><span class="ot">],</span><span class="er">LENGTHUNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">]],</span><span class="er">AXIS</span><span class="ot">[</span><span class="st">"(N)"</span><span class="ot">,</span><span class="er">north</span><span class="ot">,</span><span class="er">ORDER</span><span class="ot">[</span><span class="dv">2</span><span class="ot">],</span><span class="er">LENGTHUNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">]],</span><span class="er">USAGE</span><span class="ot">[</span><span class="er">SCOPE</span><span class="ot">[</span><span class="st">"Navigation and medium accuracy spatial referencing."</span><span class="ot">],</span><span class="er">AREA</span><span class="ot">[</span><span class="st">"Between 66°W and 60°W, northern hemisphere between equator and 84°N, onshore and offshore. Anguilla. Antigua and Barbuda. Bermuda. Brazil. British Virgin Islands. Canada - New Brunswick; Labrador; Nova Scotia; Nunavut; Prince Edward Island; Quebec. Dominica. Greenland. Grenada. Guadeloupe. Guyana. Martinique. Montserrat. Puerto Rico. St Kitts and Nevis. St Barthelemy. St Lucia. St Maarten, St Martin. St Vincent and the Grenadines. Trinidad and Tobago. Venezuela. US Virgin Islands."</span><span class="ot">],</span><span class="er">BBOX</span><span class="ot">[</span><span class="dv">0</span><span class="ot">,</span><span class="dv">-66</span><span class="ot">,</span><span class="dv">84</span><span class="ot">,</span><span class="dv">-60</span><span class="ot">]],</span><span class="er">ID</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="dv">32620</span><span class="ot">]]</span><span class="er">'</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"crs_type"</span><span class="fu">:</span> <span class="st">"wkt2:2019"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Authority code example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"crs"</span><span class="fu">:</span> <span class="st">"EPSG:32620"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"crs_type"</span><span class="fu">:</span> <span class="st">"authority_code"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that this should only be used as a last resort. Producers should prefer writing a complete description of the CRS.</p></li>
+<li><p>SRID example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"crs"</span><span class="fu">:</span> <span class="st">"32620"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"crs_type"</span><span class="fu">:</span> <span class="st">"srid"</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that this should only be used as a last resort for database drivers or readers that have no other option.</p></li>
+<li><p>Opaque CRS example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"crs"</span><span class="fu">:</span> <span class="er">'PROJCS</span><span class="ot">[</span><span class="st">"WGS 84 / UTM zone 20N"</span><span class="ot">,</span><span class="er">GEOGCS</span><span class="ot">[</span><span class="st">"WGS 84"</span><span class="ot">,</span><span class="er">DATUM</span><span class="ot">[</span><span class="st">"WGS_1984"</span><span class="ot">,</span><span class="er">SPHEROID</span><span class="ot">[</span><span class="st">"WGS 84"</span><span class="ot">,</span><span class="dv">6378137</span><span class="ot">,</span><span class="fl">298.257223563</span><span class="ot">,</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"7030"</span><span class="ot">]],</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"6326"</span><span class="ot">]],</span><span class="er">PRIMEM</span><span class="ot">[</span><span class="st">"Greenwich"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">,</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"8901"</span><span class="ot">]],</span><span class="er">UNIT</span><span class="ot">[</span><span class="st">"degree"</span><span class="ot">,</span><span class="fl">0.0174532925199433</span><span class="ot">,</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"9122"</span><span class="ot">]],</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"4326"</span><span class="ot">]],</span><span class="er">PROJECTION</span><span class="ot">[</span><span class="st">"Transverse_Mercator"</span><span class="ot">],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"latitude_of_origin"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"central_meridian"</span><span class="ot">,</span><span class="dv">-63</span><span class="ot">],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"scale_factor"</span><span class="ot">,</span><span class="fl">0.9996</span><span class="ot">],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"false_easting"</span><span class="ot">,</span><span class="dv">500000</span><span class="ot">],</span><span class="er">PARAMETER</span><span class="ot">[</span><span class="st">"false_northing"</span><span class="ot">,</span><span class="dv">0</span><span class="ot">],</span><span class="er">UNIT</span><span class="ot">[</span><span class="st">"metre"</span><span class="ot">,</span><span class="dv">1</span><span class="ot">,</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"9001"</span><span class="ot">]],</span><span class="er">AXIS</span><span class="ot">[</span><span class="st">"Easting"</span><span class="ot">,</span><span class="er">EAST</span><span class="ot">],</span><span class="er">AXIS</span><span class="ot">[</span><span class="st">"Northing"</span><span class="ot">,</span><span class="er">NORTH</span><span class="ot">],</span><span class="er">AUTHORITY</span><span class="ot">[</span><span class="st">"EPSG"</span><span class="ot">,</span><span class="st">"32620"</span><span class="ot">]]</span><span class="er">'</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Opaque CRS strings should only be used as a last resort when the producer has no way to communicate more information. In this case, the CRS is a WKT1 string, which doesn’t fit into any other allowed variants.</p></li>
+</ul>
+</section>
+<section id="newly-supported-data-types-for-wkt-and-wkb-arrays" class="level3">
+<h3 class="anchored" data-anchor-id="newly-supported-data-types-for-wkt-and-wkb-arrays">Newly-supported data types for WKT and WKB arrays</h3>
+<p>Version 1.4 of the Arrow Columnar format added <a href="https://arrow.apache.org/docs/format/Columnar.html#variable-size-binary-view-layout">“binary view”</a> and “string view” layouts. This new representation for an array of strings or bytes <a href="https://cedardb.com/blog/german_strings/">is</a> <a href="https://datafusion.apache.org/blog/2024/09/13/string-view-german-style-strings-part-2/">widely</a> <a href="https://engineering.fb.com/2024/02/20/developer-tools/velox-apache-arrow-15-composable-data-management/">held</a> <a href="https://pola.rs/posts/polars-string-type/">to be</a> more performant for common use cases.</p>
+<p>GeoArrow 0.2 allows serialized Well-Known Binary (WKB) and Well-Known Text (WKT) arrays to be backed by these new binary view and string view data types.</p>
+</section>
+<section id="edge-interpolations" class="level3">
+<h3 class="anchored" data-anchor-id="edge-interpolations">Edge interpolations</h3>
+<p>In the previous version of the specification, the <code>"edges"</code> parameter could have been omitted (to indicate planar/linear edges as defined by simple features) or taken the value <code>"spherical"</code> to indicate that vertices should be connected by approximating the edge as the shortest path on a perfect sphere. The recently added <a href="https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/">GEOMETRY and GEOGRAPHY types in Parquet and Iceberg</a>, included four other options to handle Ellipsoidal edges: <code>"vincenty"</code>, <code>"thomas"</code>, <code>"andoyer"</code>, and <code>"karney"</code>. We also added these to GeoArrow such that it can faithfully represent the intent of an arbitrary Parquet and/or Iceberg source.</p>
+</section>
+<section id="suggestion-to-use-separated-coordinate-layout" class="level3">
+<h3 class="anchored" data-anchor-id="suggestion-to-use-separated-coordinate-layout">Suggestion to use <em>separated</em> coordinate layout</h3>
+<p>GeoArrow supports two coordinate representations, <a href="../format.html#coordinate-separated">separated</a> and <a href="../format.html#coordinate-interleaved">interleaved</a>, for maximum compatibility with how different systems may wish to store coordinates.</p>
+<p>While both coordinate representations continue to be supported, we now recommend the separated representation for most use cases.</p>
+</section>
+</section>
+<section id="implementations" class="level2">
+<h2 class="anchored" data-anchor-id="implementations">Implementations</h2>
+<p>Several GeoArrow implementations have been updated to support new features in GeoArrow 0.2.</p>
+<p>Keep in mind that the implementation status here is <em>current as of May 2025</em>. If reading this in the future, refer also to individual projects for the most up-to-date information.</p>
+<section id="rust" class="level3">
+<h3 class="anchored" data-anchor-id="rust">Rust</h3>
+<p><a href="https://geoarrow.org/geoarrow-rs"><code>geoarrow-rs</code></a>, the Rust implementation of GeoArrow, has been undergoing a large refactor from a single, overly-monolithic crate to a monorepo of smaller crates, each with a more well-defined scope. These smaller crates better communicate which parts of the project are production ready and which parts are more prototypical.</p>
+<p><code>geoarrow-rs</code> is now split into the following crates:</p>
+<ul>
+<li><a href="https://docs.rs/geoarrow-schema"><code>geoarrow-schema</code></a>: GeoArrow geometry type and metadata definitions.</li>
+<li><a href="https://docs.rs/geoarrow-array"><code>geoarrow-array</code></a>: GeoArrow array definitions.</li>
+<li><a href="https://docs.rs/geoarrow-cast"><code>geoarrow-cast</code></a>: Functions for converting from one GeoArrow geometry type to another.</li>
+</ul>
+<p>These core crates are relatively stable and support the full GeoArrow 0.2 specification.</p>
+<p>Additional crates are under development but not quite released for public usage. Native Rust integration with GeoParquet will be released soon. Support for other file formats like FlatGeobuf, GeoJSON, CSV, and Shapefile is under development, as are geometry operations backed by the <a href="https://docs.rs/geo"><code>geo</code></a> crate or by linking to GEOS.</p>
+</section>
+<section id="cc" class="level3">
+<h3 class="anchored" data-anchor-id="cc">C/C++</h3>
+<p>The geoarrow project also includes <a href="https://geoarrow.org/geoarrow-c">C/C++ bindings</a> to produce and consume GeoArrow arrays from C based languages. The scope of geoarrow-c is more limited than that of geoarrow-rust; however, it does include a purpose-built WKT/WKB reader/writer and can cast those to and from native encodings. To maximize usability, geoarrow-c can be amalgamated into a single .c/.h pair depending only on <a href="https://arrow.apache.org/nanoarrow">nanoarrow</a> (which also can be amalgamated into a single .c/.h pair).</p>
+<p>The latest release of geoarrow-c supports the full GeoArrow 0.2 specification (with the exception of union types) and includes experimental new C++ helpers to make it more ergonomic to work with GeoArrow arrays passed over the <a href="https://arrow.apache.org/docs/format/CDataInterface.html">Arrow C Data Interface</a> in C++.</p>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<p>The Initial <a href="https://github.com/geoarrow/geoarrow-python">geoarrow-pyarrow</a> implementation depended completely on geoarrow’s C implementation for almost everything; however it quickly became clear that a <a href="https://arrow.apache.org/docs/python/">PyArrow</a>-native implementation was what potential importers/exporters of GeoArrow in Python were actually looking for. The result was two packages:</p>
+<ul>
+<li><code>geoarrow-types</code>, which provides an pure Python implementation of the GeoArrow type system and PyArrow-native extension type implementation.</li>
+<li><code>geoarrow-pyarrow</code>, which provides compute functions and IO tools that use PyArrow data structures for input/output but use various GeoArrow implementations under the hood to do the actual crunching.</li>
+</ul>
+<p>The changes since the 0.1 release were mostly structural; however new spec features were also added including support for the box type and support for non-PROJJSON CRS encodings.</p>
+<p>Whereas <code>geoarrow-pyarrow</code> and <code>geoarrow-types</code> are aimed squarely at the PyArrow ecosystem, <a href="https://geoarrow.org/geoarrow-rs/python"><code>geoarrow-rust</code></a> provides an experimental set of compute and IO functions with input/output based on the <a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow PyCapsule Interface</a>. As the project evolves, we envison synergy among these projects to provide magical interoperability and spatial compute capability to pyarrow users and beyond.</p>
+</section>
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r">R</h3>
+<p>The <a href="https://geoarrow.org/geoarrow-r">GeoArrow R bindings</a> provide integration between the r-spatial ecosystem (e.g., the <a href="https://r-spatial.github.io/sf">sf package</a>) and the Arrow ecosystems (e.g., the <a href="https://arrow.apache.org/docs/r">arrow</a> and <a href="https://arrow.apache.org/nanoarrow/latest/r/">nanoarrow</a> packages).</p>
+<p>The latest geoarrow-r release includes updated geoarrow-c internals and support for features of the GeoArrow 0.2 specification (except union types).</p>
+</section>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>GeoArrow’s 0.2 series of releases includes brand new revamped example data, the pipeline for which was completely rewritten to be mostly in Python using <a href="https://github.com/geoarrow/geoarrow-rs">geoarrow-rs</a>’s excellent Python bindings, <a href="https://github.com/geoarrow/geoarrow-python">geoarrow-python</a>, <a href="https://geopandas.org">geopandas</a>, and <a href="https://duckdb.org/docs/extensions/spatial">duckdb-spatial</a>. The new pipeline made it easier to generate more formats and more examples to cover some of the concepts highlighted by our first year of on-the-ground experience with the format. A few highlights include:</p>
+<ul>
+<li>Most examples are now available in <a href="https://flatgeobuf.org">FlatGeoBuf</a>, <a href="https://geoparquet.org">GeoParquet</a>’s WKB and Native encodings, <a href="https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/">Parquet’s brand-new GEOMETRY logical type</a>, and GeoArrow IPC streams with the WKT, WKB, native/interleaved, and native/separated encodings where appropriate.</li>
+<li><a href="https://github.com/geoarrow/geoarrow-data/blob/main/example-crs#readme">Coordinate Reference System (CRS) examples</a> were added to cover various CRS encodings and categories that implementations may wish to consider.</li>
+<li><a href="https://github.com/geoarrow/geoarrow-data/tree/main/quadrangles#readme">USGS Map Quadrangles</a> were added to illustrate the utility of/test the new “box” encoding that was added in the 0.2 release.</li>
+<li><a href="https://github.com/geoarrow/geoarrow-data/blob/main/natural-earth#readme">Several examples</a> based on the <a href="https://www.naturalearthdata.com/">Natural Earth</a> project were added, including an example with spherical edges/geography data type that can be used as a basic example to illustrate/test global data handling.</li>
+</ul>
+<p>The latest data is available from the <a href="https://geoarrow.org/data">geoarrow.org data page</a> and the sources can be found at the <a href="https://github.com/geoarrow/geoarrow-data">geoarrow/geoarrow-data</a> GitHub repository.</p>
+</section>
+<section id="ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="ecosystem">Ecosystem</h2>
+<section id="geopandas" class="level3">
+<h3 class="anchored" data-anchor-id="geopandas">GeoPandas</h3>
+<p>In the landmark <a href="https://geopandas.org">GeoPandas</a> 1.0 release, the <code>GeoSeries</code> and <code>GeoDataFrame</code> added <code>from_arrow()</code> and <code>to_arrow()</code> methods to import and export Python objects using the <a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow PyCapsule Interface</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow <span class="im">as</span> pa</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geoarrow.pyarrow <span class="im">as</span> ga</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geoarrow.rust.io <span class="im">import</span> read_flatgeobuf</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>table_rs <span class="op">=</span> read_flatgeobuf(url)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> geopandas.GeoDataFrame.from_arrow(table_rs)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            name                   geometry</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0  Vatican City  POINT (12.45339 41.90328)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    San Marino   POINT (12.44177 43.9361)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         Vaduz   POINT (9.51667 47.13372)</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       Lobamba     POINT (31.2 -26.46667)</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    Luxembourg      POINT (6.13 49.61166)</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>pa.table(df.to_arrow())</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; pyarrow.Table</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; name: string</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geometry: extension&lt;geoarrow.wkb&lt;WkbType&gt;&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ----</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; name: [["Vatican City","San Marino","Vaduz","Lobamba","Luxembourg",...,</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geometry: [[010100000054E57B4622E828408B074AC09EF34440,0101000000DC...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For more information, see the excellent GeoPandas documentation:</p>
+<ul>
+<li><a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.from_arrow.html"><code>GeoSeries.from_arrow()</code></a></li>
+<li><a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.to_arrow.html"><code>GeoSeries.to_arrow()</code></a></li>
+<li><a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.from_arrow.html"><code>GeoDataFrame.from_arrow()</code></a></li>
+<li><a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_arrow.html"><code>GeoDataFrame.to_arrow()</code></a></li>
+</ul>
+<p>Thanks to <a href="https://github.com/jorisvandenbossche"><span class="citation" data-cites="jorisvandenbossche">@jorisvandenbossche</span></a> and <a href="https://github.com/kylebarron"><span class="citation" data-cites="kylebarron">@kylebarron</span></a>, for driving this integration!</p>
+</section>
+<section id="lonboard" class="level3">
+<h3 class="anchored" data-anchor-id="lonboard">Lonboard</h3>
+<p>What’s a fast geospatial skateboard? A <em>lon</em>board, of course! Powered by <a href="https://deck.gl/">deck.gl</a>, <a href="https://github.com/developmentseed/lonboard">lonboard</a> can effortlessly render millions of features on an interactive map. The rendering is powered by <a href="https://geoarrow.org/format.html">GeoArrow’s native encodings</a> and the <a href="https://geoarrow.org/extension-types.html">GeoArrow extension types</a> power geometry column detection and on-the-fly reprojection to ensure multiple layers are plotted together properly. The <code>viz()</code> one-liner works on any <a href="https://arrow.apache.org/docs/format/CDataInterface/PyCapsuleInterface.html">Arrow-ish Python object</a> and is a massive quality-of-life improvement when working with large-ish data in a notebook.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geoarrow.pyarrow.io</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lonboard <span class="im">import</span> viz</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>viz(geoarrow.pyarrow.io.read_pyogrio_table(url))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="release-0-2-lonboard.png" class="img-fluid"></p>
+<p>All credit here to <a href="https://github.com/kylebarron"><span class="citation" data-cites="kylebarron">@kylebarron</span></a> for creating and maintaining this tool!</p>
+</section>
+<section id="duckdb" class="level3">
+<h3 class="anchored" data-anchor-id="duckdb">DuckDB</h3>
+<p>It has <a href="https://github.com/duckdb/duckdb-spatial/issues/153">long been a confusion</a> for users of DuckDB’s fantastic <a href="https://duckdb.org/docs/extensions/spatial">spatial extension</a> that a query like <code>SELECT st_geomfromtext('LINESTRING (0 1, 2 3)')</code>, when converted to PyArrow or R’s arrow package, contains no indication of any geometry column. The column that does appear in the output contains DuckDB spatial’s internal serialization and is in general not that useful.</p>
+<p>In DuckDB 1.2, core developers <a href="https://github.com/duckdb/duckdb/pull/15285">added support for extensions to control Arrow import/export</a>, which opened the door for the spatial extension to <a href="https://github.com/duckdb/duckdb-spatial/pull/485">accept GeoArrow extensions</a> and roundtrip the geometry type through DuckDB’s much used Arrow integration in Python, R, and ADBC. Among other libraries supporting GeoArrow, this powers seamless integration between GeoPandas and DuckDB.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>duckdb.load_extension(<span class="st">"spatial"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>duckdb.sql(<span class="st">"CALL register_geoarrow_extensions()"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a GeoDataFrame</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> geopandas.read_file(url)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Arrow table and use select directly from it with DuckDB</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>df_arrow <span class="op">=</span> df.to_arrow()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>duckdb.sql(<span class="st">"SELECT * FROM df_arrow"</span>).limit(<span class="dv">5</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ┌──────────────┬────────────────────────────────┐</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │     name     │            geometry            │</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │   varchar    │            geometry            │</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──────────────┼────────────────────────────────┤</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ Vatican City │ POINT (12.4533865 41.9032822)  │</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ San Marino   │ POINT (12.4417702 43.9360958)  │</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ Vaduz        │ POINT (9.5166695 47.1337238)   │</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ Lobamba      │ POINT (31.1999971 -26.4666675) │</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ Luxembourg   │ POINT (6.1300028 49.6116604)   │</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──────────────┴────────────────────────────────┘</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Going the other direction, call from_arrow() directly on a DuckDB result</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>geopandas.GeoDataFrame.from_arrow(duckdb.sql(<span class="st">"SELECT * FROM df_arrow"</span>)).head(<span class="dv">5</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            name                   geometry</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0  Vatican City  POINT (12.45339 41.90328)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    San Marino   POINT (12.44177 43.9361)</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         Vaduz   POINT (9.51667 47.13372)</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       Lobamba     POINT (31.2 -26.46667)</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    Luxembourg      POINT (6.13 49.61166)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For several more examples and a deeper dive in to DuckDB spatial in Python, see <a href="https://github.com/Maxxen/Geopython25">Max Gabrielsson’s excellent GeoPython 2025 tutorial</a>.</p>
+<p>Special thanks to <a href="https://github.com/Maxxen"><span class="citation" data-cites="Maxxen">@Maxxen</span></a>, <a href="https://github.com/pdet"><span class="citation" data-cites="pdet">@pdet</span></a>, and <a href="https://github.com/ianmcook"><span class="citation" data-cites="ianmcook">@ianmcook</span></a> for the PRs, reviews, and coordination to get this feature over the finish line!</p>
+</section>
+<section id="apache-sedona" class="level3">
+<h3 class="anchored" data-anchor-id="apache-sedona">Apache Sedona</h3>
+<p>Apache Sedona’s 1.6.0 release <a href="https://github.com/apache/sedona/pull/1767">added <code>dataframe_to_arrow()</code></a> in its Python bindings and its 1.7.0 release added an <a href="https://github.com/apache/sedona/pull/1825">Arrow-powered <code>create_spatial_dataframe()</code></a> creator to accellerate the Sedona–GeoPandas integration. In addition to better performance when converting between GeoPandas and Spark, this change accellerated visualization of Spark <code>DataFrame</code>s with Geometry and general integration with tools that support GeoArrow.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> lonboard</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sedona.spark <span class="im">import</span> SedonaContext</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sedona.utils.geoarrow <span class="im">import</span> create_spatial_dataframe, dataframe_to_arrow</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> geopandas.read_file(url)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> SedonaContext.builder().getOrCreate()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>sedona <span class="op">=</span> SedonaContext.create(config)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>sedona_df <span class="op">=</span> create_spatial_dataframe(sedona, df)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>sedona_df.printSchema()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; root</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  |-- name: string (nullable = true)</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  |-- geometry: geometry (nullable = true)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>lonboard.viz(dataframe_to_arrow(sedona_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="release-0-2-lonboard.png" class="img-fluid"></p>
+<p>These integrations were made possible by backporting the <a href="https://github.com/apache/spark/pull/45481">forthcoming toArrow() in Spark 4.0</a> and the forthcoming ability of <code>createDataFrame()</code> to <a href="https://github.com/apache/spark/pull/46529">accept Arrow objects directly</a>.</p>
+<p>Thanks to <a href="https://github.com/ianmcook"><span class="citation" data-cites="ianmcook">@ianmcook</span></a> for driving these changes in the Spark project and thanks to <a href="https://github.com/jiayuasu"><span class="citation" data-cites="jiayuasu">@jiayuasu</span></a> and <a href="https://github.com/Imbruced"><span class="citation" data-cites="Imbruced">@Imbruced</span></a> for reviewing/integrating these changes into Sedona!</p>
+</section>
+<section id="gdal" class="level3">
+<h3 class="anchored" data-anchor-id="gdal">GDAL</h3>
+<p>GDAL added its first <a href="https://gdal.org/en/stable/development/rfc/rfc86_column_oriented_api.html">Arrow integration in RFC 86</a>. This integration added a C API to work around the performance limitations of OGR’s row-based reader and was picked up by <a href="https://github.com/geopandas/pyogrio">pyogrio</a> almost immediately to enable faster IO - particularly for GeoPackage and FlatGeoBuf - for geopandas users. About a year later <a href="https://github.com/OSGeo/gdal/pull/8517">a matching write API was added</a> and was used by GDAL itself to <a href="https://github.com/OSGeo/gdal/pull/8560">speed up</a> its popular <code>ogr2ogr</code> command-line interface. Most recently, GDAL 3.11.0 <a href="https://gdal.org/en/stable/drivers/vector/adbc.html">added an Arrow Database Connectivity (ADBC)</a> integration to read geometry columns from ADBC-integrated datasources like PostGIS and DuckDB.</p>
+<p>Specifically related to the GeoArrow specification, GDAL 3.8.0 included the ability to <a href="https://github.com/OSGeo/gdal/pull/8617">export geometry through its Arrow interface with GeoArrow type and CRS metadata</a>. This makes it substantially easier to propagate the CRS of a geometry column when using OGR’s <code>GetArrowStream()</code> interface by passing the <code>GEOMETRY_METADATA_ENCODING=GEOARROW</code> layer option. When this option is set, geometry columns are marked with the <code>geoarrow.wkb</code> extension type with the appropriate <code>"crs"</code> in the extension metadata.</p>
+<p>Full credit to <a href="https://github.com/rouault"><span class="citation" data-cites="rouault">@rouault</span></a> for implementing these changes in the GDAL project!</p>
+</section>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
+<p>We’re thrilled that the GeoArrow specification has unlocked interoperability among spatial libraries and that the specification continues to evolve to serve the needs of the rapidly evolving spatial ecosystem. We’ve had discussions about how to represent raster data and how to integrate discrete global grids like S2 and H3…we look forward to continuing to grow the community and we’re excited to see where it will go!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/geoarrow\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

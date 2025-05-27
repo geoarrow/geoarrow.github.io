@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GeoArrow</title>
+<title>News – GeoArrow</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./geoarrow_logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../geoarrow_logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,9 +70,67 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="styles.css">
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,10 +140,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./geoarrow_logo.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../geoarrow_logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">GeoArrow</span>
     </a>
   </div>
@@ -94,15 +154,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./format.html"> 
+    <a class="nav-link" href="../format.html"> 
 <span class="menu-text">Format</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./extension-types.html"> 
+    <a class="nav-link" href="../extension-types.html"> 
 <span class="menu-text">Metadata</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -133,11 +193,11 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./news/index.html"> 
+    <a class="nav-link active" href="../news/index.html" aria-current="page"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link" href="../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
@@ -158,23 +218,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#relationship-with-geoparquet" id="toc-relationship-with-geoparquet" class="nav-link active" data-scroll-target="#relationship-with-geoparquet">Relationship with GeoParquet</a></li>
-  <li><a href="#implementations" id="toc-implementations" class="nav-link" data-scroll-target="#implementations">Implementations</a></li>
-  <li><a href="#downstream-libraries" id="toc-downstream-libraries" class="nav-link" data-scroll-target="#downstream-libraries">Downstream libraries</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GeoArrow</h1>
+<h1 class="title">News</h1>
 </div>
 
 
@@ -191,53 +243,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Version 0.2</strong>.</p>
-</blockquote>
-<p>This repository contains a specification for storing geospatial data in Apache Arrow and Arrow-compatible data structures and formats.</p>
-<p>The <a href="https://arrow.apache.org/">Apache Arrow</a> project specifies a standardized language-independent columnar memory format. It enables shared computational libraries, zero-copy shared memory and streaming messaging, interprocess communication, and is supported by many programming languages and data libraries.</p>
-<p>Spatial information can be represented as a collection of discrete objects using points, lines and polygons (i.e., vector data). The <a href="https://www.ogc.org/standards/sfa">Simple Feature Access</a> standard provides a widely used abstraction, defining a set of geometries: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, and GeometryCollection. Next to a geometry, simple features can also have non-spatial attributes that describe the feature.</p>
-<p>Geospatial data often comes in tabular format, with one or more columns with feature geometries and additional columns with feature attributes. The Arrow columnar memory model is well-suited to store both vector features and their attribute data. The GeoArrow specification defines how the vector features (geometries) can be stored in Arrow (and Arrow-compatible) data structures.</p>
-<p>This repository contains the specifications for:</p>
-<ul>
-<li>The memory layout for storing geometries in an Arrow array (<a href="./format.html">format.qmd</a>)</li>
-<li>The Arrow extension type definitions that ensure type-level metadata (e.g., CRS) is propagated when used in Arrow implementations (<a href="./extension-types.html">extension-types.qmd</a>)</li>
-</ul>
-<p>Defining a standard and efficient way to store geospatial data in the Arrow memory layout enables interoperability between different tools and ensures geospatial tools can leverage the growing Apache Arrow ecosystem:</p>
-<ul>
-<li>Efficient, columnar file formats. Leveraging the performant and compact storage of Apache Parquet as a vector data format in geospatial tools using <a href="https://github.com/opengeospatial/geoparquet/">GeoParquet</a></li>
-<li>Accelerated between-process geospatial data exchange using Apache Arrow IPC message format and Apache Arrow Flight</li>
-<li>Zero-copy in-process geospatial data transport using the Apache Arrow C Data Interface (e.g., GDAL)</li>
-<li>Shared libraries for geospatial data type representation and computation for query engines that support columnar data formats (e.g., Velox, DuckDB, and Acero)</li>
-</ul>
-<section id="relationship-with-geoparquet" class="level2">
-<h2 class="anchored" data-anchor-id="relationship-with-geoparquet">Relationship with GeoParquet</h2>
-<p>The GeoParquet specification originally started in this repo, but was moved out into its <a href="https://github.com/opengeospatial/geoparquet">own repo</a>, leaving this repo to focus on the Arrow-specific specifications (Arrow layout and extension type metadata). Whereas GeoParquet is a file-level metadata specification, GeoArrow is a field-level metadata and memory layout specification that applies in-memory (e.g., an Arrow array), on disk (e.g., using Parquet readers/writers provided by an Arrow implementation), and over the wire (e.g., using the Arrow IPC format).</p>
-</section>
-<section id="implementations" class="level2">
-<h2 class="anchored" data-anchor-id="implementations">Implementations</h2>
-<ul>
-<li><a href="https://github.com/geoarrow/geoarrow-c">geoarrow-c</a>: geospatial type system and generic coordinate-shuffling library written in C with bindings in C++, R, and Python</li>
-<li><a href="https://github.com/geoarrow/geoarrow-rs/">geoarrow-rs</a>: Rust implementation of the GeoArrow specification and bindings to GeoRust algorithms for efficient spatial operations on GeoArrow memory. See also:
-<ul>
-<li><a href="https://geoarrow.org/geoarrow-rs/python/latest/">Python bindings</a> to geoarrow-rs</li>
-<li><a href="https://geoarrow.org/geoarrow-rs/js/">geoarrow-wasm</a>, JavaScript (WebAssembly) bindings to geoarrow-rs.</li>
-</ul></li>
-<li><a href="https://github.com/geoarrow/geoarrow-python">geoarrow-python</a>: Python bindings to geoarrow-c that provide integrations with libraries like pyarrow, pandas, and geopandas.</li>
-<li><a href="https://github.com/geoarrow/geoarrow-r">geoarrow-r</a>: R bindings to geoarrow-c that provide integrations with libraries like sf and Arrow for geospatial data handling.</li>
-<li><a href="https://github.com/geoarrow/geoarrow-js">geoarrow-js</a>: Pure TypeScript implementation of GeoArrow, on top of the Arrow JavaScript implementation.</li>
-</ul>
-</section>
-<section id="downstream-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="downstream-libraries">Downstream libraries</h2>
-<ul>
-<li><a href="https://developmentseed.org/lonboard/latest/">Lonboard</a>: fast, interactive geospatial vector data visualization in Jupyter, building on top of GeoArrow.</li>
-</ul>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1748304000000" data-listing-file-modified-sort="1748358075763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2706">
+<div class="thumbnail"><a href="../news/release-0-2.html" class="no-external">
+
+<p class="card-img-top"><img src="release-0-2-lonboard.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../news/release-0-2.html" class="no-external">GeoArrow 0.2 Release</a>
+</h3>
+<div class="delink listing-description"><a href="../news/release-0-2.html" class="no-external">
+We released the first version of the GeoArrow specification (v0.1) in September 2023. Since then we’ve learned from the numerous integrations implemented by ourselves and…
+</a></div>
+</div>
+<div class="metadata">
+<a href="../news/release-0-2.html" class="no-external">
+<div class="listing-date">
+May 27, 2025
+</div>
+<div class="listing-author">
+Dewey Dunnington, Kyle Barron, Joris Van den Bossche
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

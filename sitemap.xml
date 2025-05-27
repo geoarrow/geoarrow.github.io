@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://geoarrow.org/data.html</loc>
-    <lastmod>2024-11-13T15:55:27.157Z</lastmod>
+    <loc>https://geoarrow.org/resources.html</loc>
+    <lastmod>2025-05-27T15:01:15.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://geoarrow.org/news/index.html</loc>
+    <lastmod>2025-05-27T15:01:15.762Z</lastmod>
   </url>
   <url>
     <loc>https://geoarrow.org/format.html</loc>
-    <lastmod>2024-11-13T15:55:27.157Z</lastmod>
+    <lastmod>2025-05-27T15:01:15.761Z</lastmod>
   </url>
   <url>
-    <loc>https://geoarrow.org/resources.html</loc>
-    <lastmod>2024-11-13T15:55:27.157Z</lastmod>
+    <loc>https://geoarrow.org/data.html</loc>
+    <lastmod>2025-05-27T15:01:15.761Z</lastmod>
   </url>
   <url>
     <loc>https://geoarrow.org/extension-types.html</loc>
-    <lastmod>2024-11-13T15:55:27.157Z</lastmod>
+    <lastmod>2025-05-27T15:01:15.761Z</lastmod>
   </url>
   <url>
     <loc>https://geoarrow.org/index.html</loc>
-    <lastmod>2024-11-13T15:55:27.157Z</lastmod>
+    <lastmod>2025-05-27T15:01:15.761Z</lastmod>
+  </url>
+  <url>
+    <loc>https://geoarrow.org/news/release-0-2.html</loc>
+    <lastmod>2025-05-27T15:01:15.763Z</lastmod>
   </url>
 </urlset>

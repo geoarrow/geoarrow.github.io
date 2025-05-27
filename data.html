@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -31,15 +31,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./geoarrow_logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -92,10 +93,6 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./format.html"> 
 <span class="menu-text">Format</span></a>
@@ -136,6 +133,10 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="./news/index.html"> 
+<span class="menu-text">News</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
@@ -170,9 +171,21 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#files-1" id="toc-files-1" class="nav-link" data-scroll-target="#files-1">Files</a></li>
   </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <li><a href="#natural-earth" id="toc-natural-earth" class="nav-link" data-scroll-target="#natural-earth">Natural Earth</a>
   <ul class="collapse">
   <li><a href="#files-2" id="toc-files-2" class="nav-link" data-scroll-target="#files-2">Files</a></li>
+  </ul></li>
+  <li><a href="#usgs-quadrangles" id="toc-usgs-quadrangles" class="nav-link" data-scroll-target="#usgs-quadrangles">USGS Quadrangles</a>
+  <ul class="collapse">
+  <li><a href="#files-3" id="toc-files-3" class="nav-link" data-scroll-target="#files-3">Files</a></li>
+  </ul></li>
+  <li><a href="#crs-examples" id="toc-crs-examples" class="nav-link" data-scroll-target="#crs-examples">CRS Examples</a>
+  <ul class="collapse">
+  <li><a href="#files-4" id="toc-files-4" class="nav-link" data-scroll-target="#files-4">Files</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#files-5" id="toc-files-5" class="nav-link" data-scroll-target="#files-5">Files</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -201,21 +214,18 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="nova-scotia-water" class="level2">
 <h2 class="anchored" data-anchor-id="nova-scotia-water">Nova Scotia Water</h2>
-<p>The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia <a href="https://nsgi.novascotia.ca/gdd/">Geospatial Data Directory</a>.</p>
+<p>The Nova Scotia Water data set (i.e., the Nova Scotia Hydrographic Network) and supporting data are provided by the Nova Scotia <a href="https://nsgi.novascotia.ca/gdd/">Geospatial Data Directory</a>. This data includes Z values and is an example of data distributed through a mainstream channel that requires more than one identifier to capture the CRS (horizontal + vertical CRS identifiers).</p>
 <p>These data were obtained under an <em>Unrestricted Data Use License Agreement for Government Geographic Data</em> as specified by the Province of Nova Scotia <a href="https://nsgi.novascotia.ca/gdd/">Geospatial Data Directory</a>.</p>
 <!-- begin file listing -->
 <section id="files" class="level3">
 <h3 class="anchored" data-anchor-id="files">Files</h3>
 <ul>
-<li>basin_line (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_line.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_line.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_line-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_line-wkb.arrow">arrow/wkb</a>)</li>
-<li>basin_point (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_point.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_point.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_point-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_point-wkb.arrow">arrow/wkb</a>)</li>
-<li>basin_poly (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_poly.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_poly.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_poly-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-basin_poly-wkb.arrow">arrow/wkb</a>)</li>
-<li>land_poly (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-land_poly.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-land_poly.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-land_poly-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-land_poly-wkb.arrow">arrow/wkb</a>)</li>
-<li>water_cent (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_cent.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_cent.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_cent-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_cent-wkb.arrow">arrow/wkb</a>)</li>
-<li>water_junc (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_junc.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_junc.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_junc-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_junc-wkb.arrow">arrow/wkb</a>)</li>
-<li>water_line (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_line.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_line.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_line-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_line-wkb.arrow">arrow/wkb</a>)</li>
-<li>water_point (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_point.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_point.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_point-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_point-wkb.arrow">arrow/wkb</a>)</li>
-<li>water_poly (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_poly.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_poly.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_poly-interleaved.arrow">arrow/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/ns-water-water_poly-wkb.arrow">arrow/wkb</a>)</li>
+<li>elevation (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_elevation.parquet">parquet</a>)</li>
+<li>land-poly (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_land-poly.parquet">parquet</a>)</li>
+<li>water-junc (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-junc.parquet">parquet</a>)</li>
+<li>water-line (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-line.parquet">parquet</a>)</li>
+<li>water-point (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-point.parquet">parquet</a>)</li>
+<li>water-poly (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly.fgb">fgb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/ns-water_water-poly.parquet">parquet</a>)</li>
 </ul>
 </section>
 </section>
@@ -227,7 +237,59 @@ ul.task-list li input[type="checkbox"] {
 <section id="files-1" class="level3">
 <h3 class="anchored" data-anchor-id="files-1">Files</h3>
 <ul>
-<li>point (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/microsoft-buildings-point.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/microsoft-buildings-point.arrow">arrow</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.1.0/microsoft-buildings-point-interleaved.arrow">arrow/interleaved</a>)</li>
+<li>point (<a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point.fgb.zip">fgb/zip</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point.arrows">arrows</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point_interleaved.arrows">arrows/interleaved</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point_wkb.arrows">arrows/wkb</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point_geo.parquet">geoparquet</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point_native.parquet">geoparquet/native</a>, <a href="https://github.com/geoarrow/geoarrow-data/releases/download/v0.2.0/microsoft-buildings_point.parquet">parquet</a>)</li>
+</ul>
+</section>
+</section>
+<section id="natural-earth" class="level2">
+<h2 class="anchored" data-anchor-id="natural-earth">Natural Earth</h2>
+<p>Selected data from <a href="https://www.naturalearthdata.com/">Natural Earth</a>. Notably, cities and countries as examples of global data. The <code>countries-geography</code> data includes polygons that cover the antimeridian (e.g., Fiji, Russia) and a pole (e.g., Antarctica); the <code>countries-bounds</code> data includes two boxes that straddle the antimeridian using <code>xmax &lt; xmin</code> behaviour.</p>
+<p>All versions of Natural Earth map data redistributed here are in the public domain.</p>
+<!-- begin file listing -->
+<section id="files-2" class="level3">
+<h3 class="anchored" data-anchor-id="files-2">Files</h3>
+<ul>
+<li>cities (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities_native.parquet">geoparquet/native</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_cities.parquet">parquet</a>)</li>
+<li>countries (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries_native.parquet">geoparquet/native</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries.parquet">parquet</a>)</li>
+<li>countries-geography (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography_native.parquet">geoparquet/native</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-geography.parquet">parquet</a>)</li>
+<li>countries-bounds (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds_box.arrows">arrows/box</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds_native.parquet">geoparquet/native</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/natural-earth/files/natural-earth_countries-bounds.parquet">parquet</a>)</li>
+</ul>
+</section>
+</section>
+<section id="usgs-quadrangles" class="level2">
+<h2 class="anchored" data-anchor-id="usgs-quadrangles">USGS Quadrangles</h2>
+<p>Quadrangle map areas from the United States Geological Survey (USGS). These are primarily intended to serve as a non-trivial example of the “box” data type, as map quadrangles are bounded by straight lines in longitude/latitude space.</p>
+<p>These data were <a href="https://www.arcgis.com/home/item.html?id=078eb80010984ddeb4bb5850889e5e9f">obtained from ESRI</a> and are redistributable without a Value-Added Software Application (such as, adding the sample data to an existing, non-commercial dataset for redistribution) with proper metadata and source/copyright attribution to the United States Geological Survey (USGS).</p>
+<!-- begin file listing -->
+<section id="files-3" class="level3">
+<h3 class="anchored" data-anchor-id="files-3">Files</h3>
+<ul>
+<li>100k (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k_box.arrows">arrows/box</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k_native.parquet">geoparquet/native</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/quadrangles/files/quadrangles_100k.parquet">parquet</a>)</li>
+</ul>
+</section>
+</section>
+<section id="crs-examples" class="level2">
+<h2 class="anchored" data-anchor-id="crs-examples">CRS Examples</h2>
+<p>The data here is a single polygon representing the outline of the U.S. State of Vermont (as sourced from <a href="https://www.naturalearthdata.com/">Natural Earth</a> level 1 administrative boundary data) with various coordinate reference systems (CRS) and various CRS representations. The CRS values used are:</p>
+<ul>
+<li><strong>OGC:CRS84</strong>: Longitude/latitude on the WGS84 ellipsoid with the axis order of the coordinates specified as such.</li>
+<li><strong>EPSG:4326</strong>: Latitude/longitude on the WGS84 ellipsoid. While the stated axis order according to the CRS definition in latitude, longitude; the GeoArrow and GeoParquet standards requires that consumers and producers write longitude, latitude. This is sometimes called “natural” or “traditional GIS” order and is the most common way that data declared as EPSG:4326 is found in the wild.</li>
+<li><strong>UTM Zone 18N</strong>: Projected coordinates in universal transverse mercator (i.e., EPSG:32620)</li>
+<li><strong>Custom orthographic</strong>: An orthographc projection centred on the centroid of the state of Vermont that does not have any identifier in any database.</li>
+</ul>
+<p>The above examples are all specified with an explicit <code>"crs_type": "projjson"</code> when written in GeoArrow format. The OGC:CRS84 version of the data is also included using the CRS representations stated in the GeoArrow specification (<code>wkt2:2019</code>, <code>authority_code</code>, and omitted to indicate that the producer did not know what the CRS encoding was).</p>
+<p>All versions of Natural Earth map data redistributed from this repository are in the public domain.</p>
+<!-- begin file listing -->
+<section id="files-4" class="level3">
+<h3 class="anchored" data-anchor-id="files-4">Files</h3>
+<ul>
+<li>vermont-crs84 (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84.parquet">parquet</a>)</li>
+<li>vermont-4326 (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-4326_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-4326_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-4326.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-4326.parquet">parquet</a>)</li>
+<li>vermont-utm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-utm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-utm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-utm.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-utm.parquet">parquet</a>)</li>
+<li>vermont-custom (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-custom_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-custom_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-custom.fgb">fgb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-custom.parquet">parquet</a>)</li>
+<li>vermont-crs84-wkt2 (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-wkt2_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-wkt2.parquet">parquet</a>)</li>
+<li>vermont-crs84-auth-code (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-auth-code_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-auth-code.parquet">parquet</a>)</li>
+<li>vermont-crs84-unknown (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-unknown_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example-crs/files/example-crs_vermont-crs84-unknown.parquet">parquet</a>)</li>
 </ul>
 </section>
 </section>
@@ -235,33 +297,46 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
 <p>These files are toy example files useful for testing and simple examples. Their main purpose is to make it easy to test full coverage of the geometry type/dimension/coordinate type grid. The examples are based on the <a href="https://github.com/paleolimbot/wk">wk R package</a>’s <code>wk::wk_example_wkt</code> data set.</p>
 <!-- begin file listing -->
-<section id="files-2" class="level3">
-<h3 class="anchored" data-anchor-id="files-2">Files</h3>
+<section id="files-5" class="level3">
+<h3 class="anchored" data-anchor-id="files-5">Files</h3>
 <ul>
-<li>point (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point-wkb.arrow">arrow/wkb</a>)</li>
-<li>linestring (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring-wkb.arrow">arrow/wkb</a>)</li>
-<li>polygon (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipoint (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint-wkb.arrow">arrow/wkb</a>)</li>
-<li>multilinestring (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipolygon (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon-wkb.arrow">arrow/wkb</a>)</li>
-<li>point_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>linestring_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>polygon_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipoint_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>multilinestring_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipolygon_z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_z.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_z.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_z-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_z-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_z-wkb.arrow">arrow/wkb</a>)</li>
-<li>point_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>linestring_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>polygon_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipoint_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>multilinestring_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipolygon_m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_m.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_m.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_m-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_m-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_m-wkb.arrow">arrow/wkb</a>)</li>
-<li>point_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-point_zm-wkb.arrow">arrow/wkb</a>)</li>
-<li>linestring_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-linestring_zm-wkb.arrow">arrow/wkb</a>)</li>
-<li>polygon_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-polygon_zm-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipoint_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipoint_zm-wkb.arrow">arrow/wkb</a>)</li>
-<li>multilinestring_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multilinestring_zm-wkb.arrow">arrow/wkb</a>)</li>
-<li>multipolygon_zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_zm.gpkg">gpkg</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_zm.arrow">arrow</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_zm-interleaved.arrow">arrow/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_zm-wkt.arrow">arrow/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.1.0/example/example-multipolygon_zm-wkb.arrow">arrow/wkb</a>)</li>
+<li>geometry (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry_geo.parquet">geoparquet</a>)</li>
+<li>point (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point_native.parquet">geoparquet/native</a>)</li>
+<li>linestring (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring_native.parquet">geoparquet/native</a>)</li>
+<li>polygon (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon_native.parquet">geoparquet/native</a>)</li>
+<li>multipoint (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint_native.parquet">geoparquet/native</a>)</li>
+<li>multilinestring (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring_native.parquet">geoparquet/native</a>)</li>
+<li>multipolygon (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon_native.parquet">geoparquet/native</a>)</li>
+<li>geometrycollection (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection_geo.parquet">geoparquet</a>)</li>
+<li>geometrycollection-nested (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested_geo.parquet">geoparquet</a>)</li>
+<li>geometry-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-z_geo.parquet">geoparquet</a>)</li>
+<li>point-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-z_native.parquet">geoparquet/native</a>)</li>
+<li>linestring-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-z_native.parquet">geoparquet/native</a>)</li>
+<li>polygon-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-z_native.parquet">geoparquet/native</a>)</li>
+<li>multipoint-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-z_native.parquet">geoparquet/native</a>)</li>
+<li>multilinestring-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-z_native.parquet">geoparquet/native</a>)</li>
+<li>multipolygon-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-z_native.parquet">geoparquet/native</a>)</li>
+<li>geometrycollection-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-z_geo.parquet">geoparquet</a>)</li>
+<li>geometrycollection-nested-z (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-z.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-z_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-z_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-z.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-z_geo.parquet">geoparquet</a>)</li>
+<li>geometry-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-m_geo.parquet">geoparquet</a>)</li>
+<li>point-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-m_native.parquet">geoparquet/native</a>)</li>
+<li>linestring-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-m_native.parquet">geoparquet/native</a>)</li>
+<li>polygon-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-m_native.parquet">geoparquet/native</a>)</li>
+<li>multipoint-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-m_native.parquet">geoparquet/native</a>)</li>
+<li>multilinestring-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-m_native.parquet">geoparquet/native</a>)</li>
+<li>multipolygon-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-m_native.parquet">geoparquet/native</a>)</li>
+<li>geometrycollection-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-m_geo.parquet">geoparquet</a>)</li>
+<li>geometrycollection-nested-m (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-m.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-m_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-m_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-m.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-m_geo.parquet">geoparquet</a>)</li>
+<li>geometry-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-zm_geo.parquet">geoparquet</a>)</li>
+<li>point-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_point-zm_native.parquet">geoparquet/native</a>)</li>
+<li>linestring-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_linestring-zm_native.parquet">geoparquet/native</a>)</li>
+<li>polygon-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_polygon-zm_native.parquet">geoparquet/native</a>)</li>
+<li>multipoint-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipoint-zm_native.parquet">geoparquet/native</a>)</li>
+<li>multilinestring-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multilinestring-zm_native.parquet">geoparquet/native</a>)</li>
+<li>multipolygon-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm.arrows">arrows</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm_interleaved.arrows">arrows/interleaved</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm_geo.parquet">geoparquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_multipolygon-zm_native.parquet">geoparquet/native</a>)</li>
+<li>geometrycollection-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-zm_geo.parquet">geoparquet</a>)</li>
+<li>geometrycollection-nested-zm (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-zm.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-zm_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-zm_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-zm.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometrycollection-nested-zm_geo.parquet">geoparquet</a>)</li>
+<li>geometry-mixed-dimensions (<a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-mixed-dimensions.tsv">tsv</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-mixed-dimensions_wkt.arrows">arrows/wkt</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-mixed-dimensions_wkb.arrows">arrows/wkb</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-mixed-dimensions.parquet">parquet</a>, <a href="https://raw.githubusercontent.com/geoarrow/geoarrow-data/v0.2.0/example/files/example_geometry-mixed-dimensions_geo.parquet">geoparquet</a>)</li>
 </ul>
 
 
@@ -270,239 +345,242 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/geoarrow\.org");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/geoarrow\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -510,185 +588,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
