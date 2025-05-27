@@ -11,8 +11,6 @@ website:
   navbar:
     logo: geoarrow_logo.png
     left:
-      - href: index.qmd
-        text: Home
       - format.qmd
       - extension-types.qmd
       - data.qmd
@@ -28,6 +26,7 @@ website:
             text: "R"
           - href: https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md
             text: "WebAssembly"
+      - news/index.qmd
       - resources.qmd
     right:
       - icon: github

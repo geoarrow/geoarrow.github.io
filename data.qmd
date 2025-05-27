@@ -6,4 +6,10 @@ title: "Data"
 
 {{< include geoarrow-data/microsoft-buildings/README.md >}}
 
+{{< include geoarrow-data/natural-earth/README.md >}}
+
+{{< include geoarrow-data/quadrangles/README.md >}}
+
+{{< include geoarrow-data/example-crs/README.md >}}
+
 {{< include geoarrow-data/example/README.md >}}
