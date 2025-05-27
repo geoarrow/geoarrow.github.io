@@ -138,14 +138,14 @@ GeoArrow 0.2 allows serialized Well-Known Binary (WKB) and Well-Known Text (WKT)
 
 ### Edge interpolations
 
-The `"edges"` parameter, which could previously have been omitted (to indicate
-planar/linear edges as defined by simple features) or taken the value `"spherical"`
-to indicate that vertices should be connected by approximating the edge as the
-shortest path on a perfect sphere. The recently added
+In the previous version of the specification, the `"edges"` parameter could have been
+omitted (to indicate planar/linear edges as defined by simple features) or
+taken the value `"spherical"` to indicate that vertices should be connected by
+approximating the edge as the shortest path on a perfect sphere. The recently added
 [GEOMETRY and GEOGRAPHY types in Parquet and Iceberg](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/),
-included four other options: `"vincenty"`, `"thomas"`, `"andoyer"`, and `"karney"`. We
-also added these to GeoArrow such that it can faithfully represent the intent of an arbitrary Parquet
-and/or Iceberg source.
+included four other options to handle Ellipsoidal edges: `"vincenty"`, `"thomas"`,
+`"andoyer"`, and `"karney"`. We also added these to GeoArrow such that it can
+faithfully represent the intent of an arbitrary Parquet and/or Iceberg source.
 
 ### Suggestion to use _separated_ coordinate layout
 
