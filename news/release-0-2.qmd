@@ -178,7 +178,7 @@ Additional crates are under development but not quite released for public usage.
 
 The geoarrow project also includes [C/C++ bindings](https://geoarrow.org/geoarrow-c) to produce and
 consume GeoArrow arrays from C based languages. The scope of geoarrow-c is more limited than
-that of geoarrow-rust; however, it does include a purpose-built WKT/WKB readers/writers and can
+that of geoarrow-rust; however, it does include a purpose-built WKT/WKB reader/writer and can
 cast those to and from native encodings. To maximize usability, geoarrow-c can be amalgamated
 into a single .c/.h pair depending only on [nanoarrow](https://arrow.apache.org/nanoarrow)
 (which also can be amalgamated into a single .c/.h pair).
