@@ -19,8 +19,8 @@ jobs:
         run: |
           ./sync-external.sh
         env:
-          GEOARROW_REF: "a7cc2392d3fb46e663d914d931f33d022dc45e91"
-          GEOARROW_DATA_REF: "6416e472f18669bb7b7248714ecf3545d6a099cb"
+          GEOARROW_REF: "005d02de3dd5895cba5fe5e7e862814a62a9b7e5"
+          GEOARROW_DATA_REF: "e8eaa04487d982398f07713cde527c5c5edeee1e"
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
