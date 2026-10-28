@@ -4,4 +4,9 @@ title: "Resources"
 
 ## Blog posts
 
-- [Fast, Elegant, and Performative Geospatial Data Analysis with Arrow](https://voltrondata.com/blog/geospatial_data_in_apache_arrow) (Kae Suarez, Dewey Dunnington: Voltron Data Blog)
+- [GeoArrow 0.2 Release](news/release-0-2.qmd): An overview of the specification, implementations, and integrations with the geospatial ecosystem.
+
+## Documentation and examples
+
+- [GeoArrow for Python](https://geoarrow.org/geoarrow-python/): Installation instructions and examples for working with GeoArrow arrays and GeoPandas.
+- [GeoArrow for R](https://geoarrow.org/geoarrow-r/): Installation instructions and examples for exchanging spatial data between sf and Arrow.
