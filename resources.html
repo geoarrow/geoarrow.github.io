@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Resources – GeoArrow</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -37,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-166690b9c768161ed89deb9505a7d440.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,7 +87,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./geoarrow_logo.png" alt="" class="navbar-logo">
+    <img src="./geoarrow_logo.png" alt="" class="navbar-logo light-content">
+    <img src="./geoarrow_logo.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">GeoArrow</span>
@@ -164,6 +171,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#blog-posts" id="toc-blog-posts" class="nav-link active" data-scroll-target="#blog-posts">Blog posts</a></li>
+  <li><a href="#documentation-and-examples" id="toc-documentation-and-examples" class="nav-link" data-scroll-target="#documentation-and-examples">Documentation and examples</a></li>
   </ul>
 </nav>
     </div>
@@ -192,7 +200,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="blog-posts" class="level2">
 <h2 class="anchored" data-anchor-id="blog-posts">Blog posts</h2>
 <ul>
-<li><a href="https://voltrondata.com/blog/geospatial_data_in_apache_arrow">Fast, Elegant, and Performative Geospatial Data Analysis with Arrow</a> (Kae Suarez, Dewey Dunnington: Voltron Data Blog)</li>
+<li><a href="./news/release-0-2.html">GeoArrow 0.2 Release</a>: An overview of the specification, implementations, and integrations with the geospatial ecosystem.</li>
+</ul>
+</section>
+<section id="documentation-and-examples" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-and-examples">Documentation and examples</h2>
+<ul>
+<li><a href="https://geoarrow.org/geoarrow-python/">GeoArrow for Python</a>: Installation instructions and examples for working with GeoArrow arrays and GeoPandas.</li>
+<li><a href="https://geoarrow.org/geoarrow-r/">GeoArrow for R</a>: Installation instructions and examples for exchanging spatial data between sf and Arrow.</li>
 </ul>
 
 
@@ -250,13 +265,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

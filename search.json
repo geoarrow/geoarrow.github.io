@@ -4,14 +4,21 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
+    "text": "GeoArrow 0.2 Release: An overview of the specification, implementations, and integrations with the geospatial ecosystem."
   },
   {
     "objectID": "resources.html#blog-posts",
     "href": "resources.html#blog-posts",
     "title": "Resources",
     "section": "",
-    "text": "Fast, Elegant, and Performative Geospatial Data Analysis with Arrow (Kae Suarez, Dewey Dunnington: Voltron Data Blog)"
+    "text": "GeoArrow 0.2 Release: An overview of the specification, implementations, and integrations with the geospatial ecosystem."
+  },
+  {
+    "objectID": "resources.html#documentation-and-examples",
+    "href": "resources.html#documentation-and-examples",
+    "title": "Resources",
+    "section": "Documentation and examples",
+    "text": "Documentation and examples\n\nGeoArrow for Python: Installation instructions and examples for working with GeoArrow arrays and GeoPandas.\nGeoArrow for R: Installation instructions and examples for exchanging spatial data between sf and Arrow."
   },
   {
     "objectID": "news/index.html",
