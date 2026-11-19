@@ -26,6 +26,8 @@ website:
             text: "R"
           - href: https://github.com/geoarrow/geoarrow-rs/blob/main/js/README.md
             text: "WebAssembly"
+          - href:  https://github.com/geoarrow/geoarrow-go
+            text: "Go"
       - news/index.qmd
       - resources.qmd
     right:
